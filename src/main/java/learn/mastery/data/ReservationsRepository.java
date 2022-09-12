@@ -5,5 +5,6 @@ import learn.mastery.models.Reservations;
 import java.util.List;
 
 public interface ReservationsRepository {
-    List<Reservations> findByReservations(Reservations reservations);
+
+    List<Reservations> findByReservations(String reservations);
 }

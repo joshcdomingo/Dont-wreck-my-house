@@ -22,7 +22,7 @@ public class ReservationsFileRepository implements ReservationsRepository {
     }
 
     @Override
-    public List<Reservations> findByReservations(Reservations reservations) {
+    public List<Reservations> findByReservations(String reservations) {
         ArrayList<Reservations> result = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(getFilePath(reservations)))) {
 
@@ -41,12 +41,14 @@ public class ReservationsFileRepository implements ReservationsRepository {
         return result;
     }
 
-    private String getFilePath(Reservations reservations) {
+    private String getFilePath(String reservations) {
         return Paths.get(directory, reservations + ".csv").toString();
     }
 
-    private Reservations deserialize(String[] fields, Reservations reservations) {
+    private Reservations deserialize(String[] fields, String reservations) {
         Reservations result = new Reservations();
         return  result;
     }
+
+
 }
