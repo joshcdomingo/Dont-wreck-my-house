@@ -5,40 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/DataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/GuestFileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/GuestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/HostFileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/HostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsFileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/GuestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/HostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/ReservationsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/models/Guest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/models/Host.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/models/Reservations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/ConsoleIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/MainMenuOption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/View.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dependency-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Dont-wreck-my-house.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dont-wreck-my-house/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dont-wreck-my-house/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dont-wreck-my-house/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dont-wreck-my-house/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dont-wreck-my-house/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dont-wreck-my-house/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/MainMenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/MainMenuOption.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -2,10 +2,10 @@ package learn.mastery.ui;
 
 public enum MainMenuOption {
     EXIT(0, "Exit", false),
-    VIEW_RESERVATIONS(1, "View Forages By Date", false),
-    MAKE_RESERVATIONS(2, "View Items", false),
-    UPDATE_RESERVATIONS(3, "View Foragers By Last Name", false),
-    CANCEL_RESERVATIONS(4, "View Foragers By Last Name", false);
+    VIEW_RESERVATIONS(1, "View Reservations for Host", false),
+    MAKE_RESERVATIONS(2, "Make a Reservation", false),
+    UPDATE_RESERVATIONS(3, "Edit a Reservation", false),
+    CANCEL_RESERVATIONS(4, "Cancel a Reservation", false);
 
     private int value;
     private String message;

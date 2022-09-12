@@ -2,7 +2,6 @@ package learn.mastery;
 
 import learn.mastery.data.GuestFileRepository;
 import learn.mastery.data.HostFileRepository;
-import learn.mastery.data.HostRepository;
 import learn.mastery.data.ReservationsFileRepository;
 import learn.mastery.domain.GuestService;
 import learn.mastery.domain.HostService;
