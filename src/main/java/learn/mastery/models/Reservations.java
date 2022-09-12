@@ -3,21 +3,20 @@ package learn.mastery.models;
 import java.time.LocalDate;
 
 public class Reservations {
+    private String reservations;
     private int reserveId;
     private LocalDate startDate;
     private LocalDate endDate;
-    private int guestId;
+    private Guest guest;
+    private Host host;
     private double total;
 
-    public Reservations() {
+    public String getReservations() {
+        return reservations;
     }
 
-    public Reservations(int reserveId, LocalDate startDate, LocalDate endDate, int guestId, double total) {
-        this.reserveId = reserveId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.guestId = guestId;
-        this.total = total;
+    public void setReservations(String reservations) {
+        this.reservations = reservations;
     }
 
     public int getReserveId() {
@@ -44,12 +43,20 @@ public class Reservations {
         this.endDate = endDate;
     }
 
-    public int getGuestId() {
-        return guestId;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setGuestId(int guestId) {
-        this.guestId = guestId;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
     }
 
     public double getTotal() {

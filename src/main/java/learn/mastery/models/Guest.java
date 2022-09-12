@@ -4,13 +4,13 @@ public class Guest {
     private String firstName;
     private String lastName;
     private String emailAddr;
-    private int phoneNum;
+    private String phoneNum;
     private String state;
 
     public Guest() {
     }
 
-    public Guest(int guestId, String firstName, String lastName, String emailAddr, int phoneNum, String state) {
+    public Guest(int guestId, String firstName, String lastName, String emailAddr, String phoneNum, String state) {
         this.guestId = guestId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,11 +51,11 @@ public class Guest {
         this.emailAddr = emailAddr;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(int phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 
