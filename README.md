@@ -1,2 +1,7 @@
-# Dont-wreck-my-house
-Mastery Week Project
+# Project Plan
+
+## Tasks
+
+## Schedule
+
+## Approach
