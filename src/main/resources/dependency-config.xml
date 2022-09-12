@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--adding ids so that I can reference in my constructor args-->
+    <bean id="io" class="learn.mastery.ui.ConsoleIO"></bean>
+    <bean id="guestRepository" class="learn.mastery.data.GuestFileRepository">
+        <constructor-arg value="./data/guests.csv"/>
+    </bean>
+    <bean id="reservationsRepository" class="learn.mastery.data.ReservationsFileRepository">
+        <constructor-arg value="./data/reservations"/>
+    </bean>
+    <bean id="hostRepository" class="learn.mastery.data.HostFileRepository">
+        <constructor-arg value="./data/hosts.csv"/>
+    </bean>
+    <bean id="guestService" class="learn.mastery.domain.GuestService">
+        <constructor-arg ref="guestRepository"/>
+    </bean>
+    <bean id="reservationsService" class="learn.mastery.domain.ReservationsService">
+        <constructor-arg ref="reservationsRepository"/>
+        <constructor-arg ref="hostRepository"/>
+        <constructor-arg ref="guestRepository"/>
+    </bean>
+    <bean id="hostService" class="learn.mastery.domain.HostService">
+        <constructor-arg ref="hostRepository"/>
+    </bean>
+    <bean id="view" class="learn.mastery.ui.View">
+        <constructor-arg ref="io"/>
+    </bean>
+    <bean class="learn.mastery.ui.Controller">
+        <!--adding my constructor args here-->
+        <constructor-arg ref="hostService"/>
+        <constructor-arg ref="reservationsService"/>
+        <constructor-arg ref="guestService"/>
+        <constructor-arg ref="view"/>
+    </bean>
+
+</beans>

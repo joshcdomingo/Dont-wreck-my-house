@@ -1,35 +1,103 @@
 # Project Plan
-* [ ] Create Repository Layer
-    * [ ] Create a Guest Repository
-    * [ ] Create a Host Repository
-    * [ ] Create a Reservation Repository
-    * [ ] Create a Location Repository (Will be combined with Host)
-* [ ] Create Domain Layer
-    * [ ] Create a Guest Service
-    * [ ] Create a Host Service
-    * [ ] Create a Reservation Service
-    * [ ] Create A Location Service
-    * [ ] Create A Result class
-    * [ ] Create A Response class
-* [ ] Create Models Layer
-    * [ ] Create Guest class
-    * [ ] Create Host class
-    * [ ] Create Reservation Class
-    * [ ] Create Location Class
-* [ ] Create UI Layer
-    * [ ] Create a View Class
-      * A Method to exit
-      * A Method to View Reservation
-      * A Method to Make Reservation
-      * A method to Cancel Reservation
-    * [ ] Create a Controller Class
-      * Should be a class to run everything within the UI Layer
-    * [ ] Create IO Class (For reading in certain types)
-      * ReadRequiredStrings
-      * For error checking specific user inputs
-    * [ ] Create Menu Class 
-      * Enum Class for specific options
-*[ ] Serialize and Deserialize data depending on the data
+### Create Repository Layer
+  * [ ] Create a Guest File Repository
+    * Methods
+      * findAll
+      * findById
+  * [ ] Create a Host File Repository
+    * Methods
+      * findByName
+      * findByLocation
+      *  findById
+  * [ ] Create a Reservation File Repository
+    * Methods
+        * create
+        * update
+        * delete
+        * findByReservation
+        * writeAll
+        * getFilePath
+        * serialize
+        * deserialize
+  * [ ] Create a Guest Repository
+    * Methods
+        * findAll
+        * findById
+        * findByName (Just in case)
+  * [ ] Create a Host Repository
+    * Methods
+      * findAll
+      * findByName (just in case)
+      * findById
+  * [ ] Create a Reservation Repository
+    * Methods
+      * findByReservation 
+      * create
+      * update
+      * delete
+### Create Domain Layer
+  * [ ] Create a Guest Service
+  * Methods
+    * findById
+    * findByName
+    * findAll
+    * validate
+  * [ ] Create a Host Service
+    * Methods
+        * findByName
+        * findByLocation
+        * findById
+        * validate
+  * [ ] Create a Reservation Service
+    * Methods
+      * findByReservation
+      * create
+      * findByName
+      * validate
+  * [ ] Create A Result class
+    * Methods
+      * payLoad 
+      * setPayload
+  * [ ] Create A Response class
+    * Methods
+      * isSuccess
+      * errorMessages
+      * addErrorMessages
+### Create Models Layer
+  * [ ] Create Guest class
+  * Methods
+    * constructor
+    * getters and setters
+  * [ ] Create Host class
+    * Methods
+        * constructor
+        * getters and setters
+  * [ ] Create Reservation Class
+    * Methods
+        * constructor
+        * getters and setters
+### Create UI Layer
+  * [ ] Create a View Class
+    * A Method to exit
+    * A Method to View Reservation
+    * A Method to Make Reservation
+    * A method to Cancel Reservation
+  * [ ] Create a Controller Class
+    * Should be a class to run everything within the UI Layer
+    * Methods
+      * RunApp (Do while with menu options that connect with the menu enum)
+      * viewReservationByHost
+      * createReservation
+      * updateReservation
+      * deleteReservation
+  * [ ] Create IO Class (For reading in certain types)
+    * ReadRequiredStrings
+    * ReadBoolean
+    * readInt
+    * For error checking specific user inputs
+  * [ ] Create Menu Class 
+    * Enum Class for specific options
+### Serialize and Deserialize data depending on the data
 
 
 
@@ -159,17 +227,14 @@ src
 │   │           │       GuestFileRepository.java
 │   │           │       HostFileRepository.java
 │   │           │       ReservationFileRepository.java
-│   │           │       LocationFileRepository.java
 │   │           │       GuestRepository.java
 │   │           │       HostRepository.java
 │   │           │       ReservationRepository.java
-│   │           │       LocationRepository.java
 │   │           │
 │   │           ├───domain
 │   │           │       GuestService.java
 │   │           │       HostService.java
 │   │           │       ReservationService.java
-│   │           │       LocationService.java
 │   │           │       Result.java
 │   │           │       Response.java
 │   │           │
@@ -177,7 +242,6 @@ src
 │   │           │       Guest.java
 │   │           │       Host.java
 │   │           │       Reservation.java
-│   │           │       Location.java
 │   │           │
 │   │           └───ui
 │   │                   ConsoleIO.java
@@ -194,17 +258,14 @@ src
                 │       GuestFileRepositoryTest.java
                 │       HostFileRepositoryTest.java
                 │       ReservationFileRepositoryTest.java
-                │       LocationFileRepositoryTest.java
                 │       GuestFileRepositoryDouble.java
                 │       HostFileRepositoryDouble.java
                 │       ReservationFileRepositoryDouble.java
-                │       LocationFileRepositoryDouble.java
                 │
                 └───domain
                         GuestServiceTest.java
                         HostServiceTest.java
                         ReservationServiceTest.java
-                        LocationServiceTest.Java
 ```
 
 
