@@ -1,10 +1,16 @@
 package learn.mastery.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class ConsoleIO {
 
     private final Scanner scanner = new Scanner(System.in);
+    private static final String INVALID_DATE
+            = "[INVALID] Enter a date in MM/dd/yyyy format.";
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     private static final String INVALID_NUMBER
             = "[INVALID] Enter a valid number.";
@@ -37,6 +43,16 @@ public class ConsoleIO {
         }
     }
 
+    public int readDouble(String prompt, double min, double max) {
+        while (true) {
+            int result = readInt(prompt);
+            if (result >= min && result <= max) {
+                return result;
+            }
+            println(String.format(NUMBER_OUT_OF_RANGE, min, max));
+        }
+    }
+
     public int readInt(String prompt) {
         while (true) {
             try {
@@ -53,6 +69,28 @@ public class ConsoleIO {
                 return result;
             }
             println(REQUIRED);
+        }
+    }
+
+    public LocalDate readLocalDate(String prompt) {
+        while (true) {
+            String input = readRequiredString(prompt);
+            try {
+                return LocalDate.parse(input, formatter);
+            } catch (DateTimeParseException ex) {
+                println(INVALID_DATE);
+            }
+        }
+    }
+    public boolean readBoolean(String prompt) {
+        while (true) {
+            String input = readRequiredString(prompt).toLowerCase();
+            if (input.equals("y")) {
+                return true;
+            } else if (input.equals("n")) {
+                return false;
+            }
+            println("[INVALID] Please enter 'y' or 'n'.");
         }
     }
 }

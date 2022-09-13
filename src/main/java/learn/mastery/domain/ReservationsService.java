@@ -1,5 +1,6 @@
 package learn.mastery.domain;
 
+import learn.mastery.data.DataException;
 import learn.mastery.data.GuestRepository;
 import learn.mastery.data.HostRepository;
 import learn.mastery.data.ReservationsRepository;
@@ -40,47 +41,91 @@ public class ReservationsService {
         return result;
     }
 
-//    private Result<Reservations> validate(Reservations reservations,String hostsId) {
-//        List<Reservations> forages = reservationsRepository.findByReservations(hostsId);
-//
-//        Result<Reservations> result = validateNulls(forage);
-//
-//
-//
-//        if (!result.isSuccess()) {
-//            return result;
-//        }
-//
-//        //check for duplicate item,forager,date
-//        for(Forage forage1 : forages) {
-//            if(forage1.getForager().getId().matches(forage.getForager().getId()) &&
-//                    forage1.getItem().getId() == forage.getItem().getId() &&
-//                    forage1.getDate().equals(forage.getDate())){
-//                result.addErrorMessage("Duplicate Forage");
+    public Result<Reservations> add(Reservations reserve, String hostsId) throws DataException {
+        Result<Reservations> result = validate(reserve, hostsId);
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+
+        result.setPayload(reservationsRepository.add(reserve));
+
+        return result;
+    }
+
+    private Result<Reservations> validate(Reservations reserve,String hostsId) {
+        List<Reservations> reservations = reservationsRepository.findByReservations(hostsId);
+
+        Result<Reservations> result = validateNulls(reserve);
+
+
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+//        //check for duplicate reservation
+//        for(Reservations reservations1 : reservations) {
+//            if(reservations1.getGuest().getEmailAddr().equals(reserve.getGuest().getEmailAddr()) &&
+//                    reservations1.getHost().getEmailAddr().equals(reserve.getHost().getEmailAddr()) &&
+//                    reservations1.getStartDate().equals(reserve.getStartDate()) &&
+//                    reservations1.getEndDate().equals(reserve.getEndDate())){
+//                result.addErrorMessage("Reservation is taken already!");
 //                return result;
 //            }
 //        }
-//
-//        private Result<Reservations> validateNulls(Reservations reservations) {
-//            Result<Reservations> result = new Result<>();
-//
-//            if (reservations == null) {
-//                result.addErrorMessage("Nothing to save.");
-//                return result;
-//            }
-//
-//            if (forage.getDate() == null) {
-//                result.addErrorMessage("Forage date is required.");
-//            }
-//
-//            if (forage.getForager() == null) {
-//                result.addErrorMessage("Forager is required.");
-//            }
-//
-//            if (forage.getItem() == null) {
-//                result.addErrorMessage("Item is required.");
-//            }
-//            return result;
+
+        validateFields(reserve, result);
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+        validateChildrenExist(reserve, result);
+
+        return result;
+    }
+
+        private Result<Reservations> validateNulls(Reservations reservations) {
+            Result<Reservations> result = new Result<>();
+
+            if (reservations == null) {
+                result.addErrorMessage("Nothing to save");
+                return result;
+            }
+
+            if (reservations.getHost().getHostId() == null) {
+                result.addErrorMessage("Invalid reservation ID");
+            }
+
+            if (reservations.getHost() == null) {
+                result.addErrorMessage("Host required");
+            }
+
+            if (reservations.getGuest() == null) {
+                result.addErrorMessage("Guest required");
+            }
+            return result;
+        }
+
+    private void validateFields(Reservations reservations, Result<Reservations> result) {
+        // No past dates
+//        if (reservations.getStartDate().isBefore(LocalDate.now())) {
+//            result.addErrorMessage("Start date cannot be before current date.");
 //        }
+
+    }
+
+
+
+    private void validateChildrenExist(Reservations reservations, Result<Reservations> result) {
+
+        if (reservations.getHost().getHostId() == null
+                || hostRepository.findById(reservations.getHost().getHostId()) == null) {
+            result.addErrorMessage("Host does not exist.");
+        }
+
+        if (guestRepository.findById(reservations.getGuest().getGuestId()) == null) {
+            result.addErrorMessage("Guest does not exist.");
+        }
+    }
 
 }

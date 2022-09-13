@@ -4,6 +4,8 @@ import learn.mastery.data.DataException;
 import learn.mastery.domain.GuestService;
 import learn.mastery.domain.HostService;
 import learn.mastery.domain.ReservationsService;
+import learn.mastery.domain.Result;
+import learn.mastery.models.Guest;
 import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 
@@ -41,11 +43,11 @@ public class Controller {
             option = view.selectMainMenuOption();
             switch (option) {
                 case VIEW_RESERVATIONS:
-                    //TODO
                     viewReservationsByHost();
                     break;
                 case MAKE_RESERVATIONS:
                     //TODO
+                    addReservation();
                     break;
                 case UPDATE_RESERVATIONS:
                     //TODO
@@ -56,18 +58,24 @@ public class Controller {
             }
         } while (option != MainMenuOption.EXIT);
     }
+    private void addReservation() throws DataException {
+        view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
+        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        guestService.findByEmail(view.getGuestEmail());
 
-//    private void viewByHost() {
-//        String host = view.getHostEmail();
-////        List<Reservations> reservations = reservationsService.findByReservations(view.getHostNamePrefix());
-//        List<Reservations> reservations = reservationsService.findByReservationsByEmail(host);
-//        view.displayReservationsByHost(reservations);
-//        view.enterToContinue();
-//
-////        List<Reservations> reservations = reservationsService.findByReservationsByEmail(view.getHostEmail());
-////        view.displayReservationsByHost(reservations);
-////        view.enterToContinue();
-//    }
+        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        view.displayReservationsByHost(reservations);
+        view.makeReservation(view.getHostInfo(hosts).getHostId());
+        Result<Reservations> result = reservationsService.add(view.getReserveinfo(reservations), view.getHostInfo(hosts).getHostId());
+        view.confirmPrice();
+        if(!result.isSuccess() && !view.confirmPrice()){
+            view.displayStatus(false, result.getErrorMessages());
+        }
+        else if(result.isSuccess() && view.confirmPrice()){
+            String successMessage = String.format("Forage %s created.", result.getPayload().getReserveId());
+            view.displayStatus(true, successMessage);
+        }
+    }
 
     private void viewReservationsByHost() {
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
@@ -80,6 +88,19 @@ public class Controller {
         }
         view.enterToContinue();
     }
+
+    // support methods
+//    private Host getHost() {
+//        String email = view.getHostEmail();
+//        List<Host> hosts = hostService.findByEmail(email);
+//        return view.c(foragers);
+//    }
+//
+//    private Item getItem() {
+//        Category category = view.getItemCategory();
+//        List<Item> items = itemService.findByCategory(category);
+//        return view.chooseItem(items);
+//    }
 
 
 }

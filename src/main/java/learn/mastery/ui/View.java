@@ -1,14 +1,21 @@
 package learn.mastery.ui;
 
+import learn.mastery.models.Guest;
 import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class View {
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     private Host hostInfo;
+
+    private Guest guestInfo;
+    private Reservations reserveInfo;
     private final ConsoleIO io;
 
     public View(ConsoleIO io) {
@@ -17,6 +24,9 @@ public class View {
 
     public String getHostEmail() {
         return io.readRequiredString("Hosts Email Address: ");
+    }
+    public String getGuestEmail() {
+        return io.readRequiredString("Guest Email Address: ");
     }
     public void enterToContinue() {
         io.readString("Press [Enter] to continue.");
@@ -48,6 +58,46 @@ public class View {
         displayHeader("A critical error occurred:");
         io.println(ex.getMessage());
     }
+
+    public Reservations makeReservation(String hostsId) {
+        Reservations reserve = new Reservations();
+        reserve.setGuest(guestInfo);
+        reserve.setStartDate(io.readLocalDate("Enter a check-in date [MM/dd/yyyy]: "));
+        reserve.setEndDate(io.readLocalDate("Enter a check-out date [MM/dd/yyyy]: "));
+        int daysIn = reserve.getEndDate().getDayOfMonth() - reserve.getStartDate().getDayOfMonth();
+        double rate = hostInfo.getStandRate()*daysIn;
+        reserve.setTotal(rate);
+        System.out.println("Total price of stay: ");
+        return reserve;
+    }
+
+    public boolean confirmPrice(){
+        return io.readBoolean("Confirm [y/n]:");
+    }
+
+//    public Host chooseHost(List<Host> hosts) {
+//        if (hosts.size() == 0) {
+//            io.println("No hosts found");
+//            return null;
+//        }
+//        int index = 1;
+//        for (Host host : hosts.stream().limit(25).collect(Collectors.toList())) {
+//            io.printf("%s: %s %s%n", index++, host.getEmailAddr(), host.getLastName());
+//        }
+//        index--;
+//
+//        if (hosts.size() > 25) {
+//            io.println("More than 25 foragers found. Showing first 25. Please refine your search.");
+//        }
+//        io.println("0: Exit");
+//        String message = String.format("Select a forager by their index [0-%s]: ", index);
+//
+//        index = io.readInt(message, 0, index);
+//        if (index <= 0) {
+//            return null;
+//        }
+//        return hosts.get(index - 1);
+//    }
     public void displayReservationsByHost(List<Reservations> reservations) {
         if (reservations == null || reservations.isEmpty()) {
             io.println("No reservations found.");
@@ -61,8 +111,8 @@ public class View {
         for (Reservations reservations1 : reservations) {
             io.printf("ID: %s, %s - %s, Guest:%s, %s, Email: %s%n",
                     reservations1.getReserveId(),
-                    reservations1.getStartDate(),
-                    reservations1.getEndDate(),
+                    formatter.format(reservations1.getStartDate()),
+                    formatter.format(reservations1.getEndDate()),
                     reservations1.getGuest().getFirstName(),
                     reservations1.getGuest().getLastName(),
                     reservations1.getGuest().getEmailAddr()
@@ -81,6 +131,41 @@ public class View {
         }
             return hostInfo;
 
+    }
+
+    public Guest getGuestInfo(List<Guest> guests) {
+        if (guests == null || guests.isEmpty()) {
+            io.println("No guests found.");
+            return null;
+        }
+
+        for (Guest guest : guests) {
+            guestInfo = guest;
+        }
+        return guestInfo;
+    }
+
+    public Reservations getReserveinfo(List<Reservations> reservations) {
+        if (reservations == null || reservations.isEmpty()) {
+            io.println("No guests found.");
+            return null;
+        }
+
+        for (Reservations reservations1 : reservations) {
+            reserveInfo = reservations1;
+        }
+        return reserveInfo;
+    }
+
+    public void displayStatus(boolean success, String message) {
+        displayStatus(success, List.of(message));
+    }
+
+    public void displayStatus(boolean success, List<String> messages) {
+        displayHeader(success ? "Success" : "Error");
+        for (String message : messages) {
+            io.println(message);
+        }
     }
 
 

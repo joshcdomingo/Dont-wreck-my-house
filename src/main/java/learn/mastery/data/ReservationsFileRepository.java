@@ -33,7 +33,17 @@ public class ReservationsFileRepository implements ReservationsRepository {
 
     @Override
     public Reservations add(Reservations reservations) throws DataException {
-        return null;
+        List<Reservations> all = findByReservations(reservations.getHost().getHostId());
+        int nextId = all.stream()
+                .mapToInt(Reservations::getReserveId)
+                .max()
+                .orElse(0) + 1;
+
+        reservations.setReserveId(nextId);
+
+        all.add(reservations);
+        writeAll(all, reservations.getHost().getHostId());
+        return reservations;
     }
 
 
