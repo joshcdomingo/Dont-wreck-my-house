@@ -6,21 +6,23 @@ public class Host {
     private String emailAddr;
     private String phoneNum;
     private String address;
+    private String city;
     private String state;
     private int postalCode;
     private double standRate;
-
-    public Host() {
-    }
-
     private double weekRate;
 
-    public Host(String hostId, String lastName, String emailAddr, String phoneNum, String address, String state, int postalCode, double standRate, double weekRate) {
+    public Host() {
+
+    }
+
+    public Host(String hostId, String lastName, String emailAddr, String phoneNum, String address, String city, String state, int postalCode, double standRate, double weekRate) {
         this.hostId = hostId;
         this.lastName = lastName;
         this.emailAddr = emailAddr;
         this.phoneNum = phoneNum;
         this.address = address;
+        this.city = city;
         this.state = state;
         this.postalCode = postalCode;
         this.standRate = standRate;
@@ -65,6 +67,14 @@ public class Host {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getState() {

@@ -13,11 +13,10 @@ import java.util.List;
 @Repository
 public class GuestFileRepository implements GuestRepository {
 
-    private static final String HEADER = "guest_id,first_name,last_name,email,phone,state";
 
     private final String filePath;
 
-    public GuestFileRepository(@Value("${ForagerFilePath:./data/guests.csv}") String filePath){
+    public GuestFileRepository(@Value("${GuestsFilePath:./data/guests.csv}") String filePath){
 
         this.filePath = filePath;
     }
@@ -32,7 +31,7 @@ public class GuestFileRepository implements GuestRepository {
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 
                 String[] fields = line.split(",", -1);
-                if (fields.length == 4) {
+                if (fields.length == 6) {
                     result.add(deserialize(fields));
                 }
             }
@@ -41,6 +40,15 @@ public class GuestFileRepository implements GuestRepository {
         }
         return result;
     }
+    private String serialize(Guest guest) {
+        return String.format("%s,%s,%s,%s,%s,%s",
+                guest.getGuestId(),
+                guest.getFirstName(),
+                guest.getLastName(),
+                guest.getEmailAddr(),
+                guest.getPhoneNum(),
+                guest.getState());
+    }
     private Guest deserialize(String[] fields) {
         Guest result = new Guest();
         result.setGuestId(Integer.parseInt(fields[0]));
@@ -48,7 +56,14 @@ public class GuestFileRepository implements GuestRepository {
         result.setLastName(fields[2]);
         result.setEmailAddr(fields[3]);
         result.setPhoneNum(fields[4]);
-        result.setState(fields[3]);
+        result.setState(fields[5]);
         return result;
+    }
+    @Override
+    public Guest findById(int id) {
+        return findAll().stream()
+                .filter(i -> i.getGuestId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

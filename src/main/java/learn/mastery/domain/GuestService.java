@@ -1,7 +1,10 @@
 package learn.mastery.domain;
 
 import learn.mastery.data.GuestRepository;
+import learn.mastery.models.Guest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GuestService {
@@ -9,5 +12,9 @@ public class GuestService {
 
     public GuestService(GuestRepository repository) {
         this.repository = repository;
+    }
+
+    public List<Guest> findAll() {
+        return repository.findAll();
     }
 }

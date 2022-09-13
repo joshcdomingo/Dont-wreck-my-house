@@ -4,6 +4,11 @@ import learn.mastery.data.DataException;
 import learn.mastery.domain.GuestService;
 import learn.mastery.domain.HostService;
 import learn.mastery.domain.ReservationsService;
+import learn.mastery.models.Host;
+import learn.mastery.models.Reservations;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class Controller {
 
@@ -37,6 +42,7 @@ public class Controller {
             switch (option) {
                 case VIEW_RESERVATIONS:
                     //TODO
+                    viewReservationsByHost();
                     break;
                 case MAKE_RESERVATIONS:
                     //TODO
@@ -50,4 +56,30 @@ public class Controller {
             }
         } while (option != MainMenuOption.EXIT);
     }
+
+//    private void viewByHost() {
+//        String host = view.getHostEmail();
+////        List<Reservations> reservations = reservationsService.findByReservations(view.getHostNamePrefix());
+//        List<Reservations> reservations = reservationsService.findByReservationsByEmail(host);
+//        view.displayReservationsByHost(reservations);
+//        view.enterToContinue();
+//
+////        List<Reservations> reservations = reservationsService.findByReservationsByEmail(view.getHostEmail());
+////        view.displayReservationsByHost(reservations);
+////        view.enterToContinue();
+//    }
+
+    private void viewReservationsByHost() {
+        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        try {
+            List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+            view.displayReservationsByHost(reservations);
+        }
+        catch (NullPointerException exception){
+            System.out.println("No Reservation found");
+        }
+        view.enterToContinue();
+    }
+
+
 }

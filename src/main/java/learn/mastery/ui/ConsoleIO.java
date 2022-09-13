@@ -46,7 +46,6 @@ public class ConsoleIO {
             }
         }
     }
-
     public String readRequiredString(String prompt) {
         while (true) {
             String result = readString(prompt);
