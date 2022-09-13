@@ -60,21 +60,31 @@ public class Controller {
     }
     private void addReservation() throws DataException {
         view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
+        Guest guest = getGuest();
+        if(guest == null){
+            return;
+        }
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
-        guestService.findByEmail(view.getGuestEmail());
+        try {
 
-        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
-        view.displayReservationsByHost(reservations);
-        view.makeReservation(view.getHostInfo(hosts).getHostId());
-        Result<Reservations> result = reservationsService.add(view.getReserveinfo(reservations), view.getHostInfo(hosts).getHostId());
-        view.confirmPrice();
-        if(!result.isSuccess() && !view.confirmPrice()){
-            view.displayStatus(false, result.getErrorMessages());
+            List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+            view.displayReservationsByHost(reservations);
+            Reservations reservations1 = view.makeReservation(view.getHostInfo(hosts).getHostId());
+            Result<Reservations> result = reservationsService.add(reservations1, view.getHostInfo(hosts).getHostId());
+            view.confirmPrice();
+            
+            if(!result.isSuccess() && !view.confirmPrice()){
+                view.displayStatus(false, result.getErrorMessages());
+            }
+            else if(result.isSuccess() && view.confirmPrice()){
+                String successMessage = String.format("Forage %s created.", result.getPayload().getReserveId());
+                view.displayStatus(true, successMessage);
+            }
         }
-        else if(result.isSuccess() && view.confirmPrice()){
-            String successMessage = String.format("Forage %s created.", result.getPayload().getReserveId());
-            view.displayStatus(true, successMessage);
+        catch (NullPointerException exception){
+            System.out.println("No Reservation found");
         }
+
     }
 
     private void viewReservationsByHost() {
@@ -88,14 +98,12 @@ public class Controller {
         }
         view.enterToContinue();
     }
+    private Guest getGuest() {
+        String email = view.getHostEmail();
+        List<Guest> guests = guestService.findByEmail(email);
+        return view.getGuest(guests);
+    }
 
-    // support methods
-//    private Host getHost() {
-//        String email = view.getHostEmail();
-//        List<Host> hosts = hostService.findByEmail(email);
-//        return view.c(foragers);
-//    }
-//
 //    private Item getItem() {
 //        Category category = view.getItemCategory();
 //        List<Item> items = itemService.findByCategory(category);

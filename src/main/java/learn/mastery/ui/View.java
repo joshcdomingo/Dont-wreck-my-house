@@ -132,6 +132,15 @@ public class View {
             return hostInfo;
 
     }
+    public Guest getGuest(List<Guest> guests){
+        String email = io.readRequiredString("Enter Guest Email:");
+        Guest guest = guests.stream().filter(guest1 -> guest1.getEmailAddr() == email).findFirst().orElse(null);
+
+        if(guest == null){
+            displayStatus(false, String.format("No guests found!"));
+        }
+        return guest;
+    }
 
     public Guest getGuestInfo(List<Guest> guests) {
         if (guests == null || guests.isEmpty()) {
