@@ -99,8 +99,6 @@ public class View {
         BigDecimal totalRate = standardRate.add(weekendRate);
         reserve.setTotal(totalRate);
         System.out.println();
-        System.out.println(weekDays);
-        System.out.println(weekEnds);
         System.out.printf("Total rate for weekdays: $%.2f%n",standardRate);
         System.out.printf("Total rate for weekends: $%.2f%n",weekendRate);
         System.out.printf("Total price of stay: $%.2f%n",totalRate);
