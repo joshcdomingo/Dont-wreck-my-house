@@ -15,11 +15,6 @@ public class HostService {
         this.repository = repository;
     }
 
-    public List<Host> findByLastName(String prefix) {
-        return repository.findAll().stream()
-                .filter(i -> i.getLastName().startsWith(prefix))
-                .collect(Collectors.toList());
-    }
 
     public List<Host> findByEmail(String email) {
         return repository.findAll().stream()
@@ -27,7 +22,4 @@ public class HostService {
                 .collect(Collectors.toList());
     }
 
-    public List<Host> findAll() {
-        return repository.findAll();
-    }
 }

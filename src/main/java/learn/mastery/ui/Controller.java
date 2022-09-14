@@ -56,6 +56,21 @@ public class Controller {
             }
         } while (option != MainMenuOption.EXIT);
     }
+
+    //VIEW
+    private void viewReservationsByHost() {
+        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        try {
+            List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+            view.displayReservationsByHost(reservations);
+        }
+        catch (NullPointerException exception){
+            System.out.println("No Reservation found");
+        }
+        view.enterToContinue();
+    }
+
+    //CREATE
     private void addReservation() throws DataException {
         view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
         List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
@@ -70,62 +85,21 @@ public class Controller {
         }
         List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
         view.displayReservationsByHost(reservations);
-            Reservations reservations1 = view.makeReservation(guest,host);
-            Result<Reservations> result = reservationsService.add(reservations1, view.getHostInfo(hosts).getHostId());
-            if(!result.isSuccess()){
-                view.displayStatus(false, result.getErrorMessages());
-            }
-            else if(result.isSuccess()){
-                String successMessage = String.format("Reservation %s created.", result.getPayload().getReserveId());
-                view.displayStatus(true, successMessage);
-            }
-
-    }
-
-    private void viewReservationsByHost() {
-        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
-        try {
-            List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
-            view.displayReservationsByHost(reservations);
+        Reservations reservations1 = view.makeReservation(guest,host);
+        Result<Reservations> result = reservationsService.add(reservations1, view.getHostInfo(hosts).getHostId());
+        if(!result.isSuccess()){
+            view.displayStatus(false, result.getErrorMessages());
         }
-        catch (NullPointerException exception){
-            System.out.println("No Reservation found");
+        else if(result.isSuccess()){
+            String successMessage = String.format("Reservation %s created.", result.getPayload().getReserveId());
+            view.displayStatus(true, successMessage);
         }
-        view.enterToContinue();
-    }
 
-    private void deleteReservation() throws DataException {
-        view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
-        List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
-        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
-        Guest guest = view.getGuestInfo(guests);
-
-        if(guest == null){
-            return;
-        }
-        Host host = view.getHostInfo(hosts);
-        if(host == null){
-            return;
-        }
-        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
-        view.displayOneReservation(reservations);
-        Reservations reservations1 = reservationsService.findById(view.updateById(),host.getHostId());
-
-        if(reservations != null) {
-            Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(),host.getHostId());
-            if(!result.isSuccess()){
-                view.displayStatus(false, result.getErrorMessages());
-            }
-            else if(result.isSuccess()){
-                String successMessage = "Reservation was deleted";
-                view.displayStatus(true, successMessage);
-            }
-        }
     }
 
     // UPDATE
     private void updateEntry() throws DataException {
-        view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
+        view.displayHeader(MainMenuOption.UPDATE_RESERVATIONS.getMessage());
         List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
         Guest guest = view.getGuestInfo(guests);
@@ -149,6 +123,36 @@ public class Controller {
             }
             else if(result.isSuccess()){
                 String successMessage = String.format("Reservation was updated!");
+                view.displayStatus(true, successMessage);
+            }
+        }
+    }
+
+    //DELETE
+    private void deleteReservation() throws DataException {
+        view.displayHeader(MainMenuOption.CANCEL_RESERVATIONS.getMessage());
+        List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
+        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        Guest guest = view.getGuestInfo(guests);
+
+        if(guest == null){
+            return;
+        }
+        Host host = view.getHostInfo(hosts);
+        if(host == null){
+            return;
+        }
+        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        view.displayOneReservation(reservations);
+        Reservations reservations1 = reservationsService.findById(view.updateById(),host.getHostId());
+
+        if(reservations != null) {
+            Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(),host.getHostId());
+            if(!result.isSuccess()){
+                view.displayStatus(false, result.getErrorMessages());
+            }
+            else if(result.isSuccess()){
+                String successMessage = "Reservation was deleted";
                 view.displayStatus(true, successMessage);
             }
         }

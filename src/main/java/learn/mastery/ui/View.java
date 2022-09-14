@@ -18,7 +18,6 @@ public class View {
     private Host hostInfo;
 
     private Guest guestInfo;
-    private Reservations specificReservation;
     private final ConsoleIO io;
 
     public View(ConsoleIO io) {
@@ -62,47 +61,7 @@ public class View {
         io.println(ex.getMessage());
     }
 
-    public Reservations makeReservation(Guest guest, Host hosts) {
-        Reservations reserve = new Reservations();
-        reserve.setGuest(guest);
-        reserve.setHost(hosts);
-        reserve.setStartDate(io.readLocalDate("Enter a check-in date [MM/dd/yyyy]: "));
-        reserve.setEndDate(io.readLocalDate("Enter a check-out date [MM/dd/yyyy]: "));
-        double totalDays = reserve.getEndDate().getDayOfMonth() - reserve.getStartDate().getDayOfMonth();
-        double weekDays = calcWeekDays1(reserve.getStartDate(), reserve.getEndDate());
-        double weekEnds = totalDays - weekDays;
-        BigDecimal standardRate = hostInfo.getStandRate().multiply(BigDecimal.valueOf(weekDays));
-        BigDecimal weekendRate = hostInfo.getWeekRate().multiply(BigDecimal.valueOf(weekEnds));
-        BigDecimal totalRate = standardRate.add(weekendRate);
-        reserve.setTotal(totalRate);
-        System.out.println();
-        System.out.printf("Total rate for weekdays: $%.2f%n",standardRate);
-        System.out.printf("Total rate for weekends: $%.2f%n",weekendRate);
-        System.out.printf("Total price of stay: $%.2f%n",totalRate);
-        if(confirmPrice()){
-            specificReservation = reserve;
-            return reserve;
-        }
-        else{
-            return null;
-        }
-    }
-
-    public double calcWeekDays1(LocalDate start, LocalDate end) {
-        DayOfWeek startW = start.getDayOfWeek();
-        DayOfWeek endW = end.getDayOfWeek();
-
-        double days = ChronoUnit.DAYS.between(start, end);
-        double daysWithoutWeekends = days - 2 * ((days + startW.getValue())/7);
-
-        //adjust for starting and ending on a Sunday:
-        return daysWithoutWeekends + (startW == DayOfWeek.SUNDAY ? 1 : 0) + (endW == DayOfWeek.SUNDAY ? 1 : 0);
-    }
-
-    public boolean confirmPrice(){
-        return io.readBoolean("Confirm [y/n]:");
-    }
-
+    //VIEW
     public void displayReservationsByHost(List<Reservations> reservations) {
         if (reservations == null || reservations.isEmpty()) {
             io.println("No reservations found.");
@@ -125,6 +84,49 @@ public class View {
         }
     }
 
+    //CREATE
+    public Reservations makeReservation(Guest guest, Host hosts) {
+        Reservations reserve = new Reservations();
+        reserve.setGuest(guest);
+        reserve.setHost(hosts);
+        reserve.setStartDate(io.readLocalDate("Enter a check-in date [MM/dd/yyyy]: "));
+        reserve.setEndDate(io.readLocalDate("Enter a check-out date [MM/dd/yyyy]: "));
+        double totalDays = reserve.getEndDate().getDayOfMonth() - reserve.getStartDate().getDayOfMonth();
+        double weekDays = calcWeekDays1(reserve.getStartDate(), reserve.getEndDate());
+        double weekEnds = totalDays - weekDays;
+        BigDecimal standardRate = hostInfo.getStandRate().multiply(BigDecimal.valueOf(weekDays));
+        BigDecimal weekendRate = hostInfo.getWeekRate().multiply(BigDecimal.valueOf(weekEnds));
+        BigDecimal totalRate = standardRate.add(weekendRate);
+        reserve.setTotal(totalRate);
+        System.out.println();
+        System.out.printf("Total rate for weekdays: $%.2f%n",standardRate);
+        System.out.printf("Total rate for weekends: $%.2f%n",weekendRate);
+        System.out.printf("Total price of stay: $%.2f%n",totalRate);
+        if(confirmPrice()){
+            return reserve;
+        }
+        else{
+            return null;
+        }
+    }
+
+    public double calcWeekDays1(LocalDate start, LocalDate end) {
+        DayOfWeek startW = start.getDayOfWeek();
+        DayOfWeek endW = end.getDayOfWeek();
+
+        double days = ChronoUnit.DAYS.between(start, end);
+        double daysWithoutWeekends = days - 2 * ((days + startW.getValue())/7);
+
+        //adjust for starting and ending on a Sunday:
+        return daysWithoutWeekends + (startW == DayOfWeek.SUNDAY ? 1 : 0) + (endW == DayOfWeek.SUNDAY ? 1 : 0);
+    }
+
+    public boolean confirmPrice(){
+        return io.readBoolean("Confirm [y/n]:");
+    }
+
+
+    //VIEWING ONE RESERVATION AT A TIME
     public void displayOneReservation(List<Reservations> reservations) {
         if (reservations == null || reservations.isEmpty()) {
             io.println("No reservations found.");

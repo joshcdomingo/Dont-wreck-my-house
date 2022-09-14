@@ -23,15 +23,6 @@ public class ReservationsFileRepository implements ReservationsRepository {
         this.directory = directory;
     }
 
-//    @Override
-//    public Reservations add(Reservations reservations) throws DataException {
-//        List<Reservations> all = findByReservations(reservations.getHost().getHostId());
-//        reservations.getReserveId();
-//        all.add(reservations);
-//        writeAll(all, reservations.getHost().getHostId());
-//        return reservations;
-//    }
-
 
     //CREATE
     @Override
@@ -81,17 +72,6 @@ public class ReservationsFileRepository implements ReservationsRepository {
             }
         }
         return false;
-    }
-
-
-    @Override
-    public List<Reservations> findByReservationsByEmail(Host reservations) {
-        return null;
-    }
-
-    @Override
-    public List<Reservations> findByReservationsByEmail(String email) {
-        return null;
     }
 
 

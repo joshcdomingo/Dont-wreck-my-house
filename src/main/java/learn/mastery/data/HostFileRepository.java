@@ -76,23 +76,5 @@ public class HostFileRepository implements HostRepository {
                 .orElse(null);
     }
 
-    private void writeToFile(List<Host> hosts) throws DataException {
-        try (PrintWriter writer = new PrintWriter(filePath)) {
-
-            writer.println(HEADER);
-
-            if (hosts == null) {
-                return;
-            }
-
-            for (Host host : hosts) {
-                writer.println(serialize(host));
-            }
-
-        } catch (FileNotFoundException ex) {
-            throw new DataException(ex);
-        }
-    }
-
 
 }

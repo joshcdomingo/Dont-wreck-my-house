@@ -14,10 +14,6 @@ public interface ReservationsRepository {
 
     List<Reservations> findByReservations(String reservations);
 
-    List<Reservations> findByReservationsByEmail(Host reservations);
-
-    List<Reservations> findByReservationsByEmail(String email);
-
     boolean deleteById(int reserveId, String hostsId) throws  DataException;
 
     Reservations findById(int reservationsId, String hostsId) throws DataException;

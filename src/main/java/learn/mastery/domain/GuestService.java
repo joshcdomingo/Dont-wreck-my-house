@@ -16,10 +16,6 @@ public class GuestService {
         this.repository = repository;
     }
 
-    public List<Guest> findAll() {
-        return repository.findAll();
-    }
-
     public List<Guest> findByEmail(String email) {
         return repository.findAll().stream()
                 .filter(i -> i.getEmailAddr().matches(email))
