@@ -55,7 +55,7 @@ public class HostFileRepository implements HostRepository {
         return result;
     }
 
-    //Not needed unless I features to host
+    //Not needed unless I add features to host
     private String serialize(Host host) {
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
                 host.getHostId(),

@@ -43,16 +43,6 @@ public class ConsoleIO {
         }
     }
 
-    public int readDouble(String prompt, double min, double max) {
-        while (true) {
-            int result = readInt(prompt);
-            if (result >= min && result <= max) {
-                return result;
-            }
-            println(String.format(NUMBER_OUT_OF_RANGE, min, max));
-        }
-    }
-
     public int readInt(String prompt) {
         while (true) {
             try {
