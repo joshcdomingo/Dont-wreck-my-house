@@ -62,16 +62,14 @@ public class ReservationsService {
             return result;
         }
 
-//        //check for duplicate reservation
-//        for(Reservations reservations1 : reservations) {
-//            if(reservations1.getGuest().getEmailAddr().equals(reserve.getGuest().getEmailAddr()) &&
-//                    reservations1.getHost().getEmailAddr().equals(reserve.getHost().getEmailAddr()) &&
-//                    reservations1.getStartDate().equals(reserve.getStartDate()) &&
-//                    reservations1.getEndDate().equals(reserve.getEndDate())){
-//                result.addErrorMessage("Reservation is taken already!");
-//                return result;
-//            }
-//        }
+        //check for duplicate reservation
+        for(Reservations reservations1 : reservations) {
+            if(reservations1.getStartDate().equals(reserve.getStartDate()) &&
+                    reservations1.getEndDate().equals(reserve.getEndDate())){
+                result.addErrorMessage("Reservation is taken already!");
+                return result;
+            }
+        }
 
         validateFields(reserve, result);
         if (!result.isSuccess()) {

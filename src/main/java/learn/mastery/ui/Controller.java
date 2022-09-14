@@ -59,6 +59,7 @@ public class Controller {
 
     //VIEW
     private void viewReservationsByHost() {
+        view.displayHeader(MainMenuOption.VIEW_RESERVATIONS.getMessage());
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
         try {
             List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());

@@ -2,7 +2,6 @@ package learn.mastery.domain;
 
 import learn.mastery.data.GuestRepository;
 import learn.mastery.models.Guest;
-import learn.mastery.models.Host;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
