@@ -4,11 +4,13 @@ import learn.mastery.models.Guest;
 import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 
+import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+
 
 public class View {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -65,16 +67,34 @@ public class View {
         reserve.setHost(hosts);
         reserve.setStartDate(io.readLocalDate("Enter a check-in date [MM/dd/yyyy]: "));
         reserve.setEndDate(io.readLocalDate("Enter a check-out date [MM/dd/yyyy]: "));
-        int daysIn = reserve.getEndDate().getDayOfMonth() - reserve.getStartDate().getDayOfMonth();
-        double rate = hostInfo.getStandRate()*daysIn;
-        reserve.setTotal(rate);
-        System.out.println("Total price of stay: ");
+        double totalDays = reserve.getEndDate().getDayOfMonth() - reserve.getStartDate().getDayOfMonth();
+        double weekDays = calcWeekDays1(reserve.getStartDate(), reserve.getEndDate());
+        double weekEnds = totalDays - weekDays;
+        BigDecimal standardRate = hostInfo.getStandRate().multiply(BigDecimal.valueOf(weekDays));
+        BigDecimal weekendRate = hostInfo.getWeekRate().multiply(BigDecimal.valueOf(weekEnds));
+        BigDecimal totalRate = standardRate.add(weekendRate);
+        reserve.setTotal(totalRate);
+        System.out.println();
+        System.out.printf("Total rate for weekdays $%s%n",standardRate);
+        System.out.printf("Total rate for weekends $%s%n",weekendRate);
+        System.out.printf("Total price of stay $%s%n",totalRate);
         if(confirmPrice()){
             return reserve;
         }
         else{
             return null;
         }
+    }
+
+    public double calcWeekDays1(LocalDate start, LocalDate end) {
+        DayOfWeek startW = start.getDayOfWeek();
+        DayOfWeek endW = end.getDayOfWeek();
+
+        double days = ChronoUnit.DAYS.between(start, end);
+        double daysWithoutWeekends = days - 2 * ((days + startW.getValue())/7);
+
+        //adjust for starting and ending on a Sunday:
+        return daysWithoutWeekends + (startW == DayOfWeek.SUNDAY ? 1 : 0) + (endW == DayOfWeek.SUNDAY ? 1 : 0);
     }
 
     public boolean confirmPrice(){
@@ -103,10 +123,6 @@ public class View {
         }
     }
 
-    public String getReservationEmail() {
-        displayHeader(MainMenuOption.VIEW_RESERVATIONS.getMessage());
-        return io.readRequiredString("Enter the Host Email: ");
-    }
 
     public Host getHostInfo(List<Host> hosts) {
         if (hosts == null || hosts.isEmpty()) {
@@ -120,25 +136,6 @@ public class View {
             return hostInfo;
 
     }
-//    public Guest getGuest(List<Guest> guests){
-//        String email = io.readRequiredString("Enter Guest Email:");
-//        Guest guest = guests.stream().filter(guest1 -> Objects.equals(guest1.getEmailAddr(), email)).findFirst().orElse(null);
-//
-//        if(guest == null){
-//            displayStatus(false, String.format("No guests found!"));
-//        }
-//        return guest;
-//    }
-//
-//    public Host getHost(List<Host> hosts){
-//        String email = io.readRequiredString("Enter Host Email:");
-//        Host host = hosts.stream().filter(host1 -> Objects.equals(host1.getEmailAddr(), email)).findFirst().orElse(null);
-//
-//        if(host == null){
-//            displayStatus(false, String.format("No hosts found!"));
-//        }
-//        return host;
-//    }
 
     public Guest getGuestInfo(List<Guest> guests) {
         if (guests == null || guests.isEmpty()) {
@@ -163,6 +160,27 @@ public class View {
             io.println(message);
         }
     }
+
+    //    public Guest getGuest(List<Guest> guests){
+//        String email = io.readRequiredString("Enter Guest Email:");
+//        Guest guest = guests.stream().filter(guest1 -> Objects.equals(guest1.getEmailAddr(), email)).findFirst().orElse(null);
+//
+//        if(guest == null){
+//            displayStatus(false, String.format("No guests found!"));
+//        }
+//        return guest;
+//    }
+//
+//    public Host getHost(List<Host> hosts){
+//        String email = io.readRequiredString("Enter Host Email:");
+//        Host host = hosts.stream().filter(host1 -> Objects.equals(host1.getEmailAddr(), email)).findFirst().orElse(null);
+//
+//        if(host == null){
+//            displayStatus(false, String.format("No hosts found!"));
+//        }
+//        return host;
+//    }
+
 
 
 }

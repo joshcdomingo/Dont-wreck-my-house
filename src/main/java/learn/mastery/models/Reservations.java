@@ -1,5 +1,6 @@
 package learn.mastery.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Reservations {
@@ -8,7 +9,7 @@ public class Reservations {
     private LocalDate endDate;
     private Guest guest;
     private Host host;
-    private double total;
+    private BigDecimal total;
 
     public int getReserveId() {
         return reserveId;
@@ -50,11 +51,11 @@ public class Reservations {
         this.host = host;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 }

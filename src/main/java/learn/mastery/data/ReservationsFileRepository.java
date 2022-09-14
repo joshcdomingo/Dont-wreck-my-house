@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -116,7 +117,7 @@ public class ReservationsFileRepository implements ReservationsRepository {
         result.setReserveId(Integer.parseInt(fields[0]));
         result.setStartDate(LocalDate.parse(fields[1]));
         result.setEndDate(LocalDate.parse(fields[2]));
-        result.setTotal(Double.parseDouble(fields[4]));
+        result.setTotal(BigDecimal.valueOf(Double.parseDouble(fields[4])));
 
         Guest guest = new Guest();
         guest.setGuestId(Integer.parseInt(fields[3]));

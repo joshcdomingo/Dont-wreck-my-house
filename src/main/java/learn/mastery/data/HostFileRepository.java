@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,8 +50,8 @@ public class HostFileRepository implements HostRepository {
         result.setCity(fields[5]);
         result.setState(fields[6]);
         result.setPostalCode(Integer.parseInt(fields[7]));
-        result.setStandRate(Double.parseDouble(fields[8]));
-        result.setWeekRate(Double.parseDouble(fields[9]));
+        result.setStandRate(BigDecimal.valueOf(Double.parseDouble(fields[8])));
+        result.setWeekRate(BigDecimal.valueOf(Double.parseDouble(fields[9])));
         return result;
     }
     private String serialize(Host host) {
