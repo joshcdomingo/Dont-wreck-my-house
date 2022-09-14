@@ -20,7 +20,6 @@ public class GuestFileRepository implements GuestRepository {
 
         this.filePath = filePath;
     }
-
     @Override
     public List<Guest> findAll() {
         ArrayList<Guest> result = new ArrayList<>();

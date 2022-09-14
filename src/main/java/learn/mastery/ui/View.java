@@ -7,6 +7,7 @@ import learn.mastery.models.Reservations;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class View {
@@ -15,7 +16,6 @@ public class View {
     private Host hostInfo;
 
     private Guest guestInfo;
-    private Reservations reserveInfo;
     private final ConsoleIO io;
 
     public View(ConsoleIO io) {
@@ -59,45 +59,28 @@ public class View {
         io.println(ex.getMessage());
     }
 
-    public Reservations makeReservation(String hostsId) {
+    public Reservations makeReservation(Guest guest, Host hosts) {
         Reservations reserve = new Reservations();
-        reserve.setGuest(guestInfo);
+        reserve.setGuest(guest);
+        reserve.setHost(hosts);
         reserve.setStartDate(io.readLocalDate("Enter a check-in date [MM/dd/yyyy]: "));
         reserve.setEndDate(io.readLocalDate("Enter a check-out date [MM/dd/yyyy]: "));
         int daysIn = reserve.getEndDate().getDayOfMonth() - reserve.getStartDate().getDayOfMonth();
         double rate = hostInfo.getStandRate()*daysIn;
         reserve.setTotal(rate);
         System.out.println("Total price of stay: ");
-        return reserve;
+        if(confirmPrice()){
+            return reserve;
+        }
+        else{
+            return null;
+        }
     }
 
     public boolean confirmPrice(){
         return io.readBoolean("Confirm [y/n]:");
     }
 
-//    public Host chooseHost(List<Host> hosts) {
-//        if (hosts.size() == 0) {
-//            io.println("No hosts found");
-//            return null;
-//        }
-//        int index = 1;
-//        for (Host host : hosts.stream().limit(25).collect(Collectors.toList())) {
-//            io.printf("%s: %s %s%n", index++, host.getEmailAddr(), host.getLastName());
-//        }
-//        index--;
-//
-//        if (hosts.size() > 25) {
-//            io.println("More than 25 foragers found. Showing first 25. Please refine your search.");
-//        }
-//        io.println("0: Exit");
-//        String message = String.format("Select a forager by their index [0-%s]: ", index);
-//
-//        index = io.readInt(message, 0, index);
-//        if (index <= 0) {
-//            return null;
-//        }
-//        return hosts.get(index - 1);
-//    }
     public void displayReservationsByHost(List<Reservations> reservations) {
         if (reservations == null || reservations.isEmpty()) {
             io.println("No reservations found.");
@@ -120,6 +103,11 @@ public class View {
         }
     }
 
+    public String getReservationEmail() {
+        displayHeader(MainMenuOption.VIEW_RESERVATIONS.getMessage());
+        return io.readRequiredString("Enter the Host Email: ");
+    }
+
     public Host getHostInfo(List<Host> hosts) {
         if (hosts == null || hosts.isEmpty()) {
             io.println("No hosts found.");
@@ -132,15 +120,25 @@ public class View {
             return hostInfo;
 
     }
-    public Guest getGuest(List<Guest> guests){
-        String email = io.readRequiredString("Enter Guest Email:");
-        Guest guest = guests.stream().filter(guest1 -> guest1.getEmailAddr() == email).findFirst().orElse(null);
-
-        if(guest == null){
-            displayStatus(false, String.format("No guests found!"));
-        }
-        return guest;
-    }
+//    public Guest getGuest(List<Guest> guests){
+//        String email = io.readRequiredString("Enter Guest Email:");
+//        Guest guest = guests.stream().filter(guest1 -> Objects.equals(guest1.getEmailAddr(), email)).findFirst().orElse(null);
+//
+//        if(guest == null){
+//            displayStatus(false, String.format("No guests found!"));
+//        }
+//        return guest;
+//    }
+//
+//    public Host getHost(List<Host> hosts){
+//        String email = io.readRequiredString("Enter Host Email:");
+//        Host host = hosts.stream().filter(host1 -> Objects.equals(host1.getEmailAddr(), email)).findFirst().orElse(null);
+//
+//        if(host == null){
+//            displayStatus(false, String.format("No hosts found!"));
+//        }
+//        return host;
+//    }
 
     public Guest getGuestInfo(List<Guest> guests) {
         if (guests == null || guests.isEmpty()) {
@@ -154,17 +152,6 @@ public class View {
         return guestInfo;
     }
 
-    public Reservations getReserveinfo(List<Reservations> reservations) {
-        if (reservations == null || reservations.isEmpty()) {
-            io.println("No guests found.");
-            return null;
-        }
-
-        for (Reservations reservations1 : reservations) {
-            reserveInfo = reservations1;
-        }
-        return reserveInfo;
-    }
 
     public void displayStatus(boolean success, String message) {
         displayStatus(success, List.of(message));

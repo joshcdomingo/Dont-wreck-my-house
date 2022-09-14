@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/data/reservation-seed-d59368be-f087-4f61-91bb-1bfc9b076f97.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/reservation_data_test/d59368be-f087-4f61-91bb-1bfc9b076f97.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/reservations/reservation_data_test/d59368be-f087-4f61-91bb-1bfc9b076f97.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/data/GuestFileRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/data/HostFileRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsFileRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/reservations/f4d6c5e4-d207-4ce0-93b3-f1d1b397883c.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/reservations/f4d6c5e4-d207-4ce0-93b3-f1d1b397883c.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/data/GuestFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/GuestFileRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/View.java" afterDir="false" />
     </list>
@@ -19,6 +27,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -44,15 +53,26 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Joshd/Dont-wreck-my-house/src/main/resources"
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/Joshd/Dont-wreck-my-house"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Joshd\Dont-wreck-my-house\src\main\resources" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joshd\Dont-wreck-my-house\data" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="learn.mastery.data" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ReservationsFileRepositoryTest.shouldAdd">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="learn.mastery.App" />
       <module name="dont-wreck-my-house" />
@@ -62,6 +82,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReservationsFileRepositoryTest.shouldAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.data" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.data.ReservationsFileRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldAdd" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -81,6 +117,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReservationsFileRepositoryTest.shouldAdd" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
