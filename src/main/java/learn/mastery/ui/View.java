@@ -18,6 +18,7 @@ public class View {
     private Host hostInfo;
 
     private Guest guestInfo;
+    private Reservations specificReservation;
     private final ConsoleIO io;
 
     public View(ConsoleIO io) {
@@ -46,7 +47,7 @@ public class View {
             max = Math.max(max, option.getValue());
         }
 
-        String message = String.format("Select [%s-%s]: ", min, max - 1);
+        String message = String.format("Select [%s-%s]: ", min, max);
         return MainMenuOption.fromValue(io.readInt(message, min, max));
     }
 
@@ -75,10 +76,11 @@ public class View {
         BigDecimal totalRate = standardRate.add(weekendRate);
         reserve.setTotal(totalRate);
         System.out.println();
-        System.out.printf("Total rate for weekdays $%s%n",standardRate);
-        System.out.printf("Total rate for weekends $%s%n",weekendRate);
-        System.out.printf("Total price of stay $%s%n",totalRate);
+        System.out.printf("Total rate for weekdays: $%.2f%n",standardRate);
+        System.out.printf("Total rate for weekends: $%.2f%n",weekendRate);
+        System.out.printf("Total price of stay: $%.2f%n",totalRate);
         if(confirmPrice()){
+            specificReservation = reserve;
             return reserve;
         }
         else{
@@ -121,6 +123,38 @@ public class View {
                     reservations1.getGuest().getEmailAddr()
             );
         }
+    }
+
+    public void displayOneReservation(List<Reservations> reservations) {
+        if (reservations == null || reservations.isEmpty()) {
+            io.println("No reservations found.");
+            return;
+        }
+
+
+        System.out.println();
+        System.out.printf("%s: %s, %s%n",hostInfo.getLastName(),hostInfo.getCity(),hostInfo.getState());
+        System.out.println("=".repeat(30));
+        for (Reservations reservations1 : reservations) {
+            if(reservations1.getGuest().getEmailAddr().equals(guestInfo.getEmailAddr())){
+                io.printf("ID: %s, %s - %s, Guest:%s, %s, Email: %s%n",
+                        reservations1.getReserveId(),
+                        formatter.format(reservations1.getStartDate()),
+                        formatter.format(reservations1.getEndDate()),
+                        reservations1.getGuest().getFirstName(),
+                        reservations1.getGuest().getLastName(),
+                        reservations1.getGuest().getEmailAddr()
+                );
+            }
+        }
+
+    }
+
+    public int updateById(){
+        displayHeader("Which reservation ID would you like to modify?: ");
+        // grab that entry id
+        int id = io.readInt("Enter the ID: ",1, 9999999);
+        return id;
     }
 
 

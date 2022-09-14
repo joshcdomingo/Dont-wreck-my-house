@@ -32,6 +32,8 @@ public class ReservationsFileRepository implements ReservationsRepository {
 //        return reservations;
 //    }
 
+
+    //CREATE
     @Override
     public Reservations add(Reservations reservations) throws DataException {
         List<Reservations> all = findByReservations(reservations.getHost().getHostId());
@@ -45,6 +47,40 @@ public class ReservationsFileRepository implements ReservationsRepository {
         all.add(reservations);
         writeAll(all, reservations.getHost().getHostId());
         return reservations;
+    }
+
+    //UPDATE
+    @Override
+    public boolean update(Reservations reservations, String hostsId) throws DataException {
+        List<Reservations> all = findByReservations(hostsId);
+        // loop through all the entries
+        for(int i = 0; i < all.size(); i++){
+            // if the current index id matches the logEntry id
+            if(all.get(i).getReserveId() == reservations.getReserveId()){
+                // update that index with the log entry provided
+                all.set(i, reservations);
+                // then I want to re-write that entire array to the file
+                writeAll(all, hostsId);
+                // I want to return true so we know this was successful
+                return true;
+            }
+        }
+        // if I've looped through everything and was not able to update anything I am going to return false because this update was not successful
+        return false;
+    }
+
+    //DELETE
+    @Override
+    public boolean deleteById(int reserveId, String hostsId) throws  DataException {
+        List<Reservations> all = findByReservations(hostsId);
+        for(int i = 0; i < all.size(); i++){
+            if(all.get(i).getReserveId() == reserveId){
+                all.remove(i);
+                writeAll(all,hostsId);
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -124,6 +160,17 @@ public class ReservationsFileRepository implements ReservationsRepository {
         result.setGuest(guest);
 
         return  result;
+    }
+
+    @Override
+    public Reservations findById(int reservationsId,String hostsId)  {
+        List<Reservations> all = findByReservations(hostsId);
+        for(Reservations reservations : all){
+            if(reservations.getReserveId() == reservationsId){
+                return  reservations;
+            }
+        }
+        return null;
     }
 
 }

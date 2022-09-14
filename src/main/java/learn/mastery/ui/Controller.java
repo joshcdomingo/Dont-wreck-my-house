@@ -9,7 +9,6 @@ import learn.mastery.models.Guest;
 import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Controller {
@@ -49,10 +48,10 @@ public class Controller {
                     addReservation();
                     break;
                 case UPDATE_RESERVATIONS:
-                    //TODO
+                    updateEntry();
                     break;
                 case CANCEL_RESERVATIONS:
-                    //TODO
+                    deleteReservation();
                     break;
             }
         } while (option != MainMenuOption.EXIT);
@@ -77,7 +76,7 @@ public class Controller {
                 view.displayStatus(false, result.getErrorMessages());
             }
             else if(result.isSuccess()){
-                String successMessage = String.format("Forage %s created.", result.getPayload().getReserveId());
+                String successMessage = String.format("Reservation %s created.", result.getPayload().getReserveId());
                 view.displayStatus(true, successMessage);
             }
 
@@ -93,6 +92,66 @@ public class Controller {
             System.out.println("No Reservation found");
         }
         view.enterToContinue();
+    }
+
+    private void deleteReservation() throws DataException {
+        view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
+        List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
+        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        Guest guest = view.getGuestInfo(guests);
+
+        if(guest == null){
+            return;
+        }
+        Host host = view.getHostInfo(hosts);
+        if(host == null){
+            return;
+        }
+        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        view.displayOneReservation(reservations);
+        Reservations reservations1 = reservationsService.findById(view.updateById(),host.getHostId());
+
+        if(reservations != null) {
+            Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(),host.getHostId());
+            if(!result.isSuccess()){
+                view.displayStatus(false, result.getErrorMessages());
+            }
+            else if(result.isSuccess()){
+                String successMessage = "Reservation was deleted";
+                view.displayStatus(true, successMessage);
+            }
+        }
+    }
+
+    // UPDATE
+    private void updateEntry() throws DataException {
+        view.displayHeader(MainMenuOption.MAKE_RESERVATIONS.getMessage());
+        List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
+        List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        Guest guest = view.getGuestInfo(guests);
+
+        if(guest == null){
+            return;
+        }
+        Host host = view.getHostInfo(hosts);
+        if(host == null){
+            return;
+        }
+        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        view.displayOneReservation(reservations);
+        Reservations reservations1 = reservationsService.findById(view.updateById(),host.getHostId());
+        if(reservations != null) {
+            Reservations updatedReserve = view.makeReservation(guest,host);
+            updatedReserve.setReserveId(reservations1.getReserveId());
+            Result<Reservations> result = reservationsService.update(updatedReserve,host.getHostId());
+            if(!result.isSuccess()){
+                view.displayStatus(false, result.getErrorMessages());
+            }
+            else if(result.isSuccess()){
+                String successMessage = String.format("Reservation was updated!");
+                view.displayStatus(true, successMessage);
+            }
+        }
     }
 
 //    private Guest getGuest() {

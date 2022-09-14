@@ -9,7 +9,6 @@ import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -108,13 +107,38 @@ public class ReservationsService {
 
     private void validateFields(Reservations reservations, Result<Reservations> result) {
         // No past dates
-//        if (reservations.getStartDate().isBefore(LocalDate.now())) {
-//            result.addErrorMessage("Start date cannot be before current date.");
-//        }
+        if (reservations.getEndDate().isBefore(reservations.getStartDate())) {
+            result.addErrorMessage("Start date cannot be before start date!");
+        }
 
     }
 
+    public Result<Reservations> deleteById(int reserveId, String hostsId) throws DataException {
+       Result<Reservations> result = new Result<>();
+        if(!reservationsRepository.deleteById(reserveId, hostsId)){
+            result.addErrorMessage("Reservation ID does not exist!");
+        }
+        return result;
+    }
 
+    //UPDATE
+    public Result<Reservations> update(Reservations reservations, String hostsId) throws DataException {
+        Result<Reservations> result = validate(reservations, hostsId);
+        if(!result.isSuccess()){
+            return result; // we can't go further if the result fails
+        }
+        boolean updated = reservationsRepository.update(reservations,hostsId);
+
+        if(!updated){
+            result.addErrorMessage(String.format("Reservation with id %s does not exist", reservations.getReserveId()));
+        }
+
+        return result;
+    }
+
+    public Reservations findById(int reservationId, String hostsId) throws DataException {
+        return reservationsRepository.findById(reservationId,hostsId);
+    }
 
     private void validateChildrenExist(Reservations reservations, Result<Reservations> result) {
 
