@@ -24,7 +24,7 @@ public class ReservationsService {
         this.guestRepository = guestRepository;
         this.hostRepository = hostRepository;
     }
-    public List<Reservations> findByReservations(String hostsId) {
+    public List<Reservations> findByReservations(Host host) {
 
         Map<Integer, Guest> guestMap = guestRepository.findAll().stream()
                 .collect(Collectors.toMap(Guest::getGuestId, i -> i));
@@ -32,7 +32,7 @@ public class ReservationsService {
         Map<String, Host> hostMap = hostRepository.findAll().stream()
                 .collect(Collectors.toMap(Host::getHostId, i -> i));
 
-        List<Reservations> result = reservationsRepository.findByReservations(hostsId);
+        List<Reservations> result = reservationsRepository.findByReservations(host);
         for (Reservations reservations1 : result) {
             reservations1.setGuest(guestMap.get(reservations1.getGuest().getGuestId()));
             reservations1.setHost(hostMap.get(reservations1.getHost().getHostId()));
@@ -40,8 +40,8 @@ public class ReservationsService {
         return result;
     }
 
-    public Result<Reservations> add(Reservations reserve, String hostsId) throws DataException {
-        Result<Reservations> result = validate(reserve, hostsId);
+    public Result<Reservations> add(Reservations reserve, Host host) throws DataException {
+        Result<Reservations> result = validate(reserve, host);
         if (!result.isSuccess()) {
             return result;
         }
@@ -52,8 +52,8 @@ public class ReservationsService {
         return result;
     }
 
-    private Result<Reservations> validate(Reservations reserve,String hostsId) {
-        List<Reservations> reservations = reservationsRepository.findByReservations(hostsId);
+    private Result<Reservations> validate(Reservations reserve,Host host) {
+        List<Reservations> reservations = reservationsRepository.findByReservations(host);
 
         Result<Reservations> result = validateNulls(reserve);
 
@@ -111,21 +111,21 @@ public class ReservationsService {
 
     }
 
-    public Result<Reservations> deleteById(int reserveId, String hostsId) throws DataException {
+    public Result<Reservations> deleteById(int reserveId, Host host) throws DataException {
        Result<Reservations> result = new Result<>();
-        if(!reservationsRepository.deleteById(reserveId, hostsId)){
+        if(!reservationsRepository.deleteById(reserveId, host)){
             result.addErrorMessage("Reservation ID does not exist!");
         }
         return result;
     }
 
     //UPDATE
-    public Result<Reservations> update(Reservations reservations, String hostsId) throws DataException {
-        Result<Reservations> result = validate(reservations, hostsId);
+    public Result<Reservations> update(Reservations reservations, Host host) throws DataException {
+        Result<Reservations> result = validate(reservations, host);
         if(!result.isSuccess()){
             return result; // we can't go further if the result fails
         }
-        boolean updated = reservationsRepository.update(reservations,hostsId);
+        boolean updated = reservationsRepository.update(reservations,host);
 
         if(!updated){
             result.addErrorMessage(String.format("Reservation with id %s does not exist", reservations.getReserveId()));
@@ -134,8 +134,8 @@ public class ReservationsService {
         return result;
     }
 
-    public Reservations findById(int reservationId, String hostsId) throws DataException {
-        return reservationsRepository.findById(reservationId,hostsId);
+    public Reservations findById(int reservationId, Host host) throws DataException {
+        return reservationsRepository.findById(reservationId,host);
     }
 
     private void validateChildrenExist(Reservations reservations, Result<Reservations> result) {

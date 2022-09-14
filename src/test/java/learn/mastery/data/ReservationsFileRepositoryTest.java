@@ -24,7 +24,7 @@ class ReservationsFileRepositoryTest {
     static final String TEST_DIR_PATH = "./data/reservation_data_test";
     ReservationsFileRepository repository = new ReservationsFileRepository(TEST_DIR_PATH);
 
-    final Host host = new Host("d59368be-f087-4f61-91bb-1bfc9b076f97","Maddick","vmaddick1v@tiny.cc","(770) 6214581","63621 Bonner Point","Gainesville","GA",30506,329,411.25);
+    final Host host = new Host("d59368be-f087-4f61-91bb-1bfc9b076f97","Maddick","vmaddick1v@tiny.cc","(770) 6214581","63621 Bonner Point","Gainesville","GA",30506,new BigDecimal(329),new BigDecimal(411.25));
 
 
     @BeforeEach

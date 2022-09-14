@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/GuestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/GuestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/reservation_data_test/null.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/reservation_data_test/null.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsFileRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/ReservationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/ReservationsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsFileRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsFileRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +82,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ReservationsFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.data" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.data.ReservationsFileRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ReservationsFileRepositoryTest.shouldAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
@@ -111,6 +129,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.ReservationsFileRepositoryTest" />
         <item itemvalue="JUnit.ReservationsFileRepositoryTest.shouldAdd" />
       </list>
     </recent_temporary>

@@ -61,8 +61,9 @@ public class Controller {
     private void viewReservationsByHost() {
         view.displayHeader(MainMenuOption.VIEW_RESERVATIONS.getMessage());
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
+        Host host = view.getHostInfo(hosts);
         try {
-            List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+            List<Reservations> reservations = reservationsService.findByReservations(host);
             view.displayReservationsByHost(reservations);
         }
         catch (NullPointerException exception){
@@ -84,10 +85,10 @@ public class Controller {
         if(hosts == null){
             return;
         }
-        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayReservationsByHost(reservations);
         Reservations reservations1 = view.makeReservation(guest,host);
-        Result<Reservations> result = reservationsService.add(reservations1, view.getHostInfo(hosts).getHostId());
+        Result<Reservations> result = reservationsService.add(reservations1, host);
         if(!result.isSuccess()){
             view.displayStatus(false, result.getErrorMessages());
         }
@@ -112,13 +113,13 @@ public class Controller {
         if(host == null){
             return;
         }
-        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayOneReservation(reservations);
-        Reservations reservations1 = reservationsService.findById(view.updateById(),host.getHostId());
+        Reservations reservations1 = reservationsService.findById(view.updateById(),host);
         if(reservations != null) {
             Reservations updatedReserve = view.makeReservation(guest,host);
             updatedReserve.setReserveId(reservations1.getReserveId());
-            Result<Reservations> result = reservationsService.update(updatedReserve,host.getHostId());
+            Result<Reservations> result = reservationsService.update(updatedReserve,host);
             if(!result.isSuccess()){
                 view.displayStatus(false, result.getErrorMessages());
             }
@@ -143,12 +144,12 @@ public class Controller {
         if(host == null){
             return;
         }
-        List<Reservations> reservations = reservationsService.findByReservations(view.getHostInfo(hosts).getHostId());
+        List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayOneReservation(reservations);
-        Reservations reservations1 = reservationsService.findById(view.updateById(),host.getHostId());
+        Reservations reservations1 = reservationsService.findById(view.updateById(),host);
 
         if(reservations != null) {
-            Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(),host.getHostId());
+            Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(),host);
             if(!result.isSuccess()){
                 view.displayStatus(false, result.getErrorMessages());
             }
