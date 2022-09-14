@@ -39,6 +39,8 @@ public class GuestFileRepository implements GuestRepository {
         }
         return result;
     }
+
+    //Not needed unless I add features to guest
     private String serialize(Guest guest) {
         return String.format("%s,%s,%s,%s,%s,%s",
                 guest.getGuestId(),

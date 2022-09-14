@@ -54,6 +54,8 @@ public class HostFileRepository implements HostRepository {
         result.setWeekRate(BigDecimal.valueOf(Double.parseDouble(fields[9])));
         return result;
     }
+
+    //Not needed unless I features to host
     private String serialize(Host host) {
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
                 host.getHostId(),

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,7 +48,7 @@ class ReservationsFileRepositoryTest {
         reservations.setStartDate(LocalDate.of(2020, 6, 26));
         reservations.setEndDate(LocalDate.of(2020, 6, 30));
 
-        reservations.setTotal(reservations.getEndDate().getDayOfYear()-reservations.getStartDate().getDayOfYear());
+        reservations.setTotal(BigDecimal.valueOf(reservations.getEndDate().getDayOfYear()-reservations.getStartDate().getDayOfYear()));
 
 
 
