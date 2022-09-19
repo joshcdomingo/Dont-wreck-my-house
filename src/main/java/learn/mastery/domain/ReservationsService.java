@@ -9,6 +9,7 @@ import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -81,27 +82,27 @@ public class ReservationsService {
         return result;
     }
 
-        private Result<Reservations> validateNulls(Reservations reservations) {
-            Result<Reservations> result = new Result<>();
+    private Result<Reservations> validateNulls(Reservations reservations) {
+        Result<Reservations> result = new Result<>();
 
-            if (reservations == null) {
-                result.addErrorMessage("Nothing to save");
-                return result;
-            }
-
-            if (reservations.getHost().getHostId() == null) {
-                result.addErrorMessage("Invalid reservation ID");
-            }
-
-            if (reservations.getHost() == null) {
-                result.addErrorMessage("Host required");
-            }
-
-            if (reservations.getGuest() == null) {
-                result.addErrorMessage("Guest required");
-            }
+        if (reservations == null) {
+            result.addErrorMessage("Nothing to save");
             return result;
         }
+
+        if (reservations.getHost().getHostId() == null) {
+            result.addErrorMessage("Invalid reservation ID");
+        }
+
+        if (reservations.getHost() == null) {
+            result.addErrorMessage("Host required");
+        }
+
+        if (reservations.getGuest() == null) {
+            result.addErrorMessage("Guest required");
+        }
+        return result;
+    }
 
     private void validateFields(Reservations reservations, Result<Reservations> result) {
         // No past dates
@@ -109,10 +110,20 @@ public class ReservationsService {
             result.addErrorMessage("Start date cannot be before start date!");
         }
 
+        // No past dates
+        if (reservations.getEndDate().isEqual(reservations.getStartDate())) {
+            result.addErrorMessage("Reservation cannot be the same day!");
+        }
+
+        //date can't be in the past
+        if(reservations.getStartDate().isBefore(LocalDate.now())){
+            result.addErrorMessage("Reservation date cannot be before the current date!");
+        }
+
     }
 
     public Result<Reservations> deleteById(int reserveId, Host host) throws DataException {
-       Result<Reservations> result = new Result<>();
+        Result<Reservations> result = new Result<>();
         if(!reservationsRepository.deleteById(reserveId, host)){
             result.addErrorMessage("Reservation ID does not exist!");
         }

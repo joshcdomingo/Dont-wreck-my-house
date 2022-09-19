@@ -7,10 +7,13 @@ import java.util.List;
 
 public interface ReservationsRepository {
 
+
+    //CREATE
+    Reservations add(Reservations reservations) throws DataException;
+
     //UPDATE
     boolean update(Reservations reservations, Host host) throws DataException;
 
-    Reservations add(Reservations reservations) throws DataException;
 
     List<Reservations> findByReservations(Host host);
 

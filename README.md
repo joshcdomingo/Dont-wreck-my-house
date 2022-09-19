@@ -1,15 +1,15 @@
 # Project Plan
 ### Create Repository Layer
-  * [ ] Create a Guest File Repository
+* [ ] Create a Guest File Repository
     * Methods
-      * findAll
-      * findById
-  * [ ] Create a Host File Repository
+        * findAll
+        * findById
+* [ ] Create a Host File Repository
     * Methods
-      * findByName
-      * findByLocation
-      *  findById
-  * [ ] Create a Reservation File Repository
+        * findByName
+        * findByLocation
+        *  findById
+* [ ] Create a Reservation File Repository
     * Methods
         * create
         * update
@@ -19,83 +19,83 @@
         * getFilePath
         * serialize
         * deserialize
-  * [ ] Create a Guest Repository
+* [ ] Create a Guest Repository
     * Methods
         * findAll
         * findById
         * findByName (Just in case)
-  * [ ] Create a Host Repository
+* [ ] Create a Host Repository
     * Methods
-      * findAll
-      * findByName (just in case)
-      * findById
-  * [ ] Create a Reservation Repository
+        * findAll
+        * findByName (just in case)
+        * findById
+* [ ] Create a Reservation Repository
     * Methods
-      * findByReservation 
-      * create
-      * update
-      * delete
+        * findByReservation
+        * create
+        * update
+        * delete
 ### Create Domain Layer
-  * [ ] Create a Guest Service
-  * Methods
+* [ ] Create a Guest Service
+* Methods
     * findById
     * findByName
     * findAll
     * validate
-  * [ ] Create a Host Service
+* [ ] Create a Host Service
     * Methods
         * findByName
         * findByLocation
         * findById
         * validate
-  * [ ] Create a Reservation Service
+* [ ] Create a Reservation Service
     * Methods
-      * findByReservation
-      * create
-      * findByName
-      * validate
-  * [ ] Create A Result class
+        * findByReservation
+        * create
+        * findByName
+        * validate
+* [ ] Create A Result class
     * Methods
-      * payLoad 
-      * setPayload
-  * [ ] Create A Response class
+        * payLoad
+        * setPayload
+* [ ] Create A Response class
     * Methods
-      * isSuccess
-      * errorMessages
-      * addErrorMessages
+        * isSuccess
+        * errorMessages
+        * addErrorMessages
 ### Create Models Layer
-  * [ ] Create Guest class
-  * Methods
+* [ ] Create Guest class
+* Methods
     * constructor
     * getters and setters
-  * [ ] Create Host class
+* [ ] Create Host class
     * Methods
         * constructor
         * getters and setters
-  * [ ] Create Reservation Class
+* [ ] Create Reservation Class
     * Methods
         * constructor
         * getters and setters
 ### Create UI Layer
-  * [ ] Create a View Class
+* [ ] Create a View Class
     * A Method to exit
     * A Method to View Reservation
     * A Method to Make Reservation
     * A method to Cancel Reservation
-  * [ ] Create a Controller Class
+* [ ] Create a Controller Class
     * Should be a class to run everything within the UI Layer
     * Methods
-      * RunApp (Do while with menu options that connect with the menu enum)
-      * viewReservationByHost
-      * createReservation
-      * updateReservation
-      * deleteReservation
-  * [ ] Create IO Class (For reading in certain types)
+        * RunApp (Do while with menu options that connect with the menu enum)
+        * viewReservationByHost
+        * createReservation
+        * updateReservation
+        * deleteReservation
+* [ ] Create IO Class (For reading in certain types)
     * ReadRequiredStrings
     * ReadBoolean
     * readInt
     * For error checking specific user inputs
-  * [ ] Create Menu Class 
+* [ ] Create Menu Class
     * Enum Class for specific options
 ### Serialize and Deserialize data depending on the data
 
@@ -138,7 +138,7 @@ Books accommodations for a guest at a host.
 - The guest and host must already exist in the "database". Guests and hosts cannot be created.
 - The start date must come before the end date.
 - The reservation may never overlap existing reservation dates.
-- The start date must be in the future. 
+- The start date must be in the future.
 
 ### Edit a Reservation
 Edits an existing reservation.
@@ -285,7 +285,7 @@ Main Menu
 4. Cancel a Reservation
    Select [0-4]:
 ```
-   View Reservations for Host
+View Reservations for Host
 ```
    View Reservations for Host
    ==========================

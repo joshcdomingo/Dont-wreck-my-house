@@ -20,4 +20,5 @@ public class GuestService {
                 .filter(i -> i.getEmailAddr().matches(email))
                 .collect(Collectors.toList());
     }
+
 }

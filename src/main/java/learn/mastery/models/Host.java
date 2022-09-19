@@ -10,7 +10,7 @@ public class Host {
     private String address;
     private String city;
     private String state;
-    private int postalCode;
+    private String postalCode;
     private BigDecimal standRate;
     private BigDecimal weekRate;
 
@@ -18,7 +18,7 @@ public class Host {
 
     }
 
-    public Host(String hostId, String lastName, String emailAddr, String phoneNum, String address, String city, String state, int postalCode, BigDecimal standRate, BigDecimal weekRate) {
+    public Host(String hostId, String lastName, String emailAddr, String phoneNum, String address, String city, String state, String postalCode, BigDecimal standRate, BigDecimal weekRate) {
         this.hostId = hostId;
         this.lastName = lastName;
         this.emailAddr = emailAddr;
@@ -87,11 +87,11 @@ public class Host {
         this.state = state;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

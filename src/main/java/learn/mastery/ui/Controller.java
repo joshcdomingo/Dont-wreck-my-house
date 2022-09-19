@@ -88,13 +88,17 @@ public class Controller {
         List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayReservationsByHost(reservations);
         Reservations reservations1 = view.makeReservation(guest,host);
-        Result<Reservations> result = reservationsService.add(reservations1, host);
-        if(!result.isSuccess()){
-            view.displayStatus(false, result.getErrorMessages());
+        if(reservations1 != null) {
+            Result<Reservations> result = reservationsService.add(reservations1, host);
+            if (!result.isSuccess()) {
+                view.displayStatus(false, result.getErrorMessages());
+            } else if (result.isSuccess()) {
+                String successMessage = String.format("Reservation %s created.", result.getPayload().getReserveId());
+                view.displayStatus(true, successMessage);
+            }
         }
-        else if(result.isSuccess()){
-            String successMessage = String.format("Reservation %s created.", result.getPayload().getReserveId());
-            view.displayStatus(true, successMessage);
+        else{
+            view.displayStatus(false, "Reservation not made");
         }
 
     }
@@ -127,6 +131,9 @@ public class Controller {
                 String successMessage = String.format("Reservation was updated!");
                 view.displayStatus(true, successMessage);
             }
+        }
+        else{
+            view.displayStatus(false, "Reservation not updated");
         }
     }
 

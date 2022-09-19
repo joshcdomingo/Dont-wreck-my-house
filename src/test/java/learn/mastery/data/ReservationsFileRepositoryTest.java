@@ -25,9 +25,9 @@ class ReservationsFileRepositoryTest {
     static final String TEST_FILE_PATH = "./data/reservation_data_test/d59368be-f087-4f61-91bb-1bfc9b076f97.csv";
     static final String TEST_DIR_PATH = "./data/reservation_data_test";
     ReservationsFileRepository repository = new ReservationsFileRepository(TEST_DIR_PATH);
-    static final int FORAGE_COUNT = 12;
+    static final int FORAGE_COUNT = 17;
 
-    final Host host = new Host("d59368be-f087-4f61-91bb-1bfc9b076f97", "Maddick", "vmaddick1v@tiny.cc", "(770) 6214581", "63621 Bonner Point", "Gainesville", "GA", 30506, new BigDecimal(329), new BigDecimal(411.25));
+    final Host host = new Host("d59368be-f087-4f61-91bb-1bfc9b076f97", "Maddick", "vmaddick1v@tiny.cc", "(770) 6214581", "63621 Bonner Point", "Gainesville", "GA", "30506", new BigDecimal(329), new BigDecimal(411.25));
 
 
     @BeforeEach
@@ -45,14 +45,11 @@ class ReservationsFileRepositoryTest {
         Guest guest = new Guest();
         reservations.setGuest(guest);
 
-        Host host = new Host();
-        reservations.setHost(host);
-
 
         reservations.setStartDate(LocalDate.of(2020, 6, 26));
         reservations.setEndDate(LocalDate.of(2020, 6, 30));
 
-        reservations.setTotal(BigDecimal.valueOf(reservations.getEndDate().getDayOfYear() - reservations.getStartDate().getDayOfYear()));
+        reservations.setTotal(BigDecimal.valueOf((reservations.getEndDate().getDayOfYear() - reservations.getStartDate().getDayOfYear())).multiply(host.getStandRate()));
 
 
         reservations = repository.add(reservations);
@@ -65,7 +62,7 @@ class ReservationsFileRepositoryTest {
         boolean result = repository.deleteById(1,host);
         Assertions.assertTrue(result);
         List<Reservations> all = repository.findByReservations(host);
-        Assertions.assertEquals(11,all.size());
+        Assertions.assertEquals(16,all.size());
         Reservations reservations = repository.findById(1,host);
         Assertions.assertNull(reservations);
     }
@@ -78,7 +75,6 @@ class ReservationsFileRepositoryTest {
         Guest guest = new Guest();
         reservations.setGuest(guest);
 
-        Host host = new Host();
         reservations.setHost(host);
 
 
@@ -92,7 +88,7 @@ class ReservationsFileRepositoryTest {
         Assertions.assertEquals(LocalDate.of(2020,06,26), reservations.getStartDate());
         Assertions.assertEquals(LocalDate.of(2020,06,30), reservations.getEndDate());
         Assertions.assertEquals(0, reservations.getGuest().getGuestId());
-        Assertions.assertEquals(BigDecimal.valueOf(400.0),reservations.getTotal());
+        Assertions.assertEquals(BigDecimal.valueOf(1579.5),reservations.getTotal());
     }
     @Test
     public void shouldFindByReservation(){
