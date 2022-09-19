@@ -38,9 +38,51 @@ class ReservationsServiceTest {
         assertNotNull(result);
     }
 
+    @Test
+    void shouldNotMakeDuplicateReservation() throws DataException {
+        Reservations reservations = new Reservations();
+        reservations.setHost(HostFileRepositoryDouble.HOST);
+
+
+        reservations.setGuest(GuestFileRepositoryDouble.GUEST);
+
+        reservations.setStartDate(LocalDate.of(2023, 6, 26));
+        reservations.setEndDate(LocalDate.of(2023, 6, 30));
+        reservations.setTotal(BigDecimal.valueOf(595));
+
+        Result<Reservations> result = service.add(reservations, host);
+        assertTrue(result.isSuccess());
+        assertNotNull(result);
+    }
+
 
     @Test
     void shouldNotAddReservationBeforePresentDay() throws DataException {
+        List<Reservations> all = service.findByReservations(host);
+        Reservations reservations = new Reservations();
+
+        reservations.setGuest(GuestFileRepositoryDouble.GUEST);
+
+        reservations.setHost(host);
+
+
+        reservations.setStartDate(LocalDate.of(2020, 6, 26));
+        reservations.setEndDate(LocalDate.of(2020, 6, 26));
+        reservations.setTotal(BigDecimal.valueOf(595));
+
+        Result<Reservations> result = service.add(reservations, host);
+        assertFalse(result.isSuccess());
+
+        assertNull(result.getPayload());
+        //check to see if it's in the data
+        assertFalse(all.contains(result.getPayload()));
+
+        assertEquals("Reservation cannot be the same day!", result.getErrorMessages().get(0));
+
+    }
+
+    @Test
+    void shouldNotAddBeforeCurrentDate() throws DataException {
         List<Reservations> all = service.findByReservations(host);
         Reservations reservations = new Reservations();
 
@@ -62,6 +104,21 @@ class ReservationsServiceTest {
 
         assertEquals("Reservation date cannot be before the current date!", result.getErrorMessages().get(0));
 
+    }
+
+    @Test
+    void shouldDeleteExistingReservation() throws DataException {
+        Result<Reservations> actual = service.deleteById(1,host);
+        assertTrue(actual.isSuccess());
+    }
+
+    @Test
+    void shouldNotDeleteNonExistingReservation() throws DataException {
+        Result<Reservations> actual = service.deleteById(999,host);
+
+        assertFalse(actual.isSuccess());
+        assertEquals(1, actual.getErrorMessages().size());
+        assertTrue(actual.getErrorMessages().get(0).contains("does not exist"));
     }
 
 
