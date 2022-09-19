@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsRepositoryDouble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsRepositoryDouble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/learn/mastery/domain/ReservationsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/domain/ReservationsServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/ReservationsRepositoryDouble.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/ReservationsRepositoryDouble.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +72,7 @@
       <recent name="learn.mastery.data" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HostFileRepositoryTest.shouldFindId">
+  <component name="RunManager" selected="JUnit.GuestFileRepositoryTest">
     <configuration name="GuestFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
@@ -79,6 +83,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="learn.mastery.data" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.data.GuestFileRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuestServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.GuestServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,18 +118,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HostFileRepositoryTest.shouldFindId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HostServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="learn.mastery.data.*" />
+          <option name="PATTERN" value="learn.mastery.domain.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.data" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.data.HostFileRepositoryTest" />
-      <option name="METHOD_NAME" value="shouldFindId" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.HostServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -125,21 +143,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="learn.mastery.data" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.data.ReservationsFileRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReservationsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -160,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HostFileRepositoryTest.shouldFindId" />
+        <item itemvalue="JUnit.GuestFileRepositoryTest" />
         <item itemvalue="JUnit.HostFileRepositoryTest" />
         <item itemvalue="JUnit.ReservationsFileRepositoryTest" />
-        <item itemvalue="JUnit.GuestFileRepositoryTest" />
-        <item itemvalue="JUnit.ReservationsServiceTest" />
+        <item itemvalue="JUnit.GuestServiceTest" />
+        <item itemvalue="JUnit.HostServiceTest" />
       </list>
     </recent_temporary>
   </component>

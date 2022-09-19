@@ -24,6 +24,15 @@ public class ReservationsRepositoryDouble implements ReservationsRepository{
         reservations1.setGuest(GuestFileRepositoryDouble.GUEST);
         reservations1.setTotal(BigDecimal.valueOf(400.0));
         reservations2.add(reservations1);
+
+        Reservations reservationsNew = new Reservations();
+        reservationsNew.setHost(host);
+        reservationsNew.setReserveId(2);
+        reservationsNew.setStartDate(LocalDate.of(2022, 11, 21));
+        reservationsNew.setEndDate(LocalDate.of(2022, 11, 27));
+        reservationsNew.setGuest(GuestFileRepositoryDouble.GUEST);
+        reservationsNew.setTotal(BigDecimal.valueOf(400.0));
+        reservations2.add(reservationsNew);
     }
 
 
