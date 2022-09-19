@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/learn/mastery/domain/ReservationsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/domain/ReservationsServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +68,7 @@
       <recent name="learn.mastery.data" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReservationsServiceTest.shouldNotMakeDuplicateReservation">
+  <component name="RunManager" selected="JUnit.HostFileRepositoryTest.shouldFindId">
     <configuration name="GuestFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
@@ -81,7 +79,52 @@
       </extension>
       <option name="PACKAGE_NAME" value="learn.mastery.data" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.data.GuestFileRepositoryTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HostFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.data" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.data.HostFileRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HostFileRepositoryTest.shouldFindId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.data" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.data.HostFileRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldFindId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReservationsFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.data" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.data.ReservationsFileRepositoryTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -102,70 +145,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReservationsServiceTest.shouldMakeReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldMakeReservation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReservationsServiceTest.shouldNotAddReservationWithEndDateBeforeStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldNotAddReservationWithEndDateBeforeStart" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReservationsServiceTest.shouldNotMakeDuplicateReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldNotMakeDuplicateReservation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReservationsServiceTest.shouldUpdateExistingReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldUpdateExistingReservation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Dont-wreck-my-house" />
       <method v="2">
@@ -181,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotMakeDuplicateReservation" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotAddReservationWithEndDateBeforeStart" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldUpdateExistingReservation" />
+        <item itemvalue="JUnit.HostFileRepositoryTest.shouldFindId" />
+        <item itemvalue="JUnit.HostFileRepositoryTest" />
+        <item itemvalue="JUnit.ReservationsFileRepositoryTest" />
+        <item itemvalue="JUnit.GuestFileRepositoryTest" />
         <item itemvalue="JUnit.ReservationsServiceTest" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldMakeReservation" />
       </list>
     </recent_temporary>
   </component>
@@ -217,5 +196,10 @@
         <PinnedItemInfo parentTag="learn.mastery.data.ReservationsRepositoryDouble" memberName="reservations2" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Dont_wreck_my_house$HostServiceTest.ic" NAME="HostServiceTest Coverage Results" MODIFIED="1663599151728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>learn.mastery.domain.*</FILTER>
+    </SUITE>
   </component>
 </project>

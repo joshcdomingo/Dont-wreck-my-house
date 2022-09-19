@@ -22,10 +22,10 @@ class HostFileRepositoryTest {
 
     @Test
     void shouldFindId(){
-        Host actual = repository.findById("79dba877-cdf5-4b30-99ba-94b1c67aad58");
+        Host actual = repository.findById("f4d6c5e4-d207-4ce0-93b3-f1d1b397883c");
 
         assertNotNull(actual);
-        assertEquals("79dba877-cdf5-4b30-99ba-94b1c67aad58",actual.getHostId());
+        assertEquals("f4d6c5e4-d207-4ce0-93b3-f1d1b397883c",actual.getHostId());
     }
 
 }
