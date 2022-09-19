@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsRepositoryDouble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/data/ReservationsRepositoryDouble.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/learn/mastery/domain/ReservationsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/learn/mastery/domain/ReservationsServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" afterDir="false" />
     </list>
@@ -70,7 +71,20 @@
       <recent name="learn.mastery.data" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReservationsServiceTest.shouldNotAddReservationWithSameStartAndEndDate">
+  <component name="RunManager" selected="JUnit.ReservationsServiceTest.shouldUpdateExistingReservation">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.App" />
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GuestFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
@@ -102,7 +116,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReservationsServiceTest.shouldDeleteExistingLogEntry" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReservationsServiceTest.shouldMakeReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
         <pattern>
@@ -112,7 +126,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="learn.mastery.domain" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldDeleteExistingLogEntry" />
+      <option name="METHOD_NAME" value="shouldMakeReservation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,7 +148,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReservationsServiceTest.shouldNotDeleteNonExistingReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReservationsServiceTest.shouldUpdateExistingReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
         <pattern>
@@ -144,23 +158,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="learn.mastery.domain" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldNotDeleteNonExistingReservation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReservationsServiceTest.shouldNotMakeDuplicateReservation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldNotMakeDuplicateReservation" />
+      <option name="METHOD_NAME" value="shouldUpdateExistingReservation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -181,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotAddReservationWithSameStartAndEndDate" />
+        <item itemvalue="JUnit.ReservationsServiceTest.shouldUpdateExistingReservation" />
         <item itemvalue="JUnit.ReservationsServiceTest" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotDeleteNonExistingReservation" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldDeleteExistingLogEntry" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotMakeDuplicateReservation" />
+        <item itemvalue="JUnit.ReservationsServiceTest.shouldMakeReservation" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotAddReservationWithSameStartAndEndDate" />
       </list>
     </recent_temporary>
   </component>

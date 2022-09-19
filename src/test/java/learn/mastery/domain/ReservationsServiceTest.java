@@ -26,7 +26,7 @@ class ReservationsServiceTest {
         Reservations reservations = new Reservations();
         reservations.setHost(HostFileRepositoryDouble.HOST);
 
-
+        reservations.setReserveId(0);
         reservations.setGuest(GuestFileRepositoryDouble.GUEST);
 
         reservations.setStartDate(LocalDate.of(2023, 6, 26));
@@ -36,6 +36,25 @@ class ReservationsServiceTest {
         Result<Reservations> result = service.add(reservations, host);
         assertTrue(result.isSuccess());
         assertNotNull(result);
+    }
+
+    @Test
+    void shouldUpdateExistingReservation() throws DataException {
+        List<Reservations> all = service.findByReservations(host);
+        for(Reservations reservations : all) {
+            reservations.setHost(HostFileRepositoryDouble.HOST);
+
+
+            reservations.setGuest(GuestFileRepositoryDouble.GUEST);
+
+            reservations.setStartDate(LocalDate.of(2023, 6, 26));
+            reservations.setEndDate(LocalDate.of(2023, 6, 30));
+            reservations.setTotal(BigDecimal.valueOf(595));
+
+            Result<Reservations> result = service.update(reservations, host);
+            assertTrue(result.isSuccess());
+            assertNotNull(result);
+        }
     }
 
     @Test
