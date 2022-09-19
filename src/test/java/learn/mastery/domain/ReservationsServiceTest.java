@@ -57,7 +57,7 @@ class ReservationsServiceTest {
 
 
     @Test
-    void shouldNotAddReservationBeforePresentDay() throws DataException {
+    void shouldNotAddReservationWithSameStartAndEndDate() throws DataException {
         List<Reservations> all = service.findByReservations(host);
         Reservations reservations = new Reservations();
 

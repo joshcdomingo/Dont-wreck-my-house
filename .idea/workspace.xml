@@ -70,7 +70,7 @@
       <recent name="learn.mastery.data" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReservationsServiceTest.shouldNotDeleteNonExistingReservation">
+  <component name="RunManager" selected="JUnit.ReservationsServiceTest.shouldNotAddReservationWithSameStartAndEndDate">
     <configuration name="GuestFileRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
@@ -82,6 +82,21 @@
       <option name="PACKAGE_NAME" value="learn.mastery.data" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.data.GuestFileRepositoryTest" />
       <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReservationsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dont-wreck-my-house" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learn.mastery.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
+      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -103,7 +118,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReservationsServiceTest.shouldMakeReservations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReservationsServiceTest.shouldNotAddReservationWithSameStartAndEndDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dont-wreck-my-house" />
       <extension name="coverage">
         <pattern>
@@ -113,23 +128,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="learn.mastery.domain" />
       <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldMakeReservations" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReservationsServiceTest.shouldNotAddBeforeCurrentDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dont-wreck-my-house" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="learn.mastery.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="learn.mastery.domain" />
-      <option name="MAIN_CLASS_NAME" value="learn.mastery.domain.ReservationsServiceTest" />
-      <option name="METHOD_NAME" value="shouldNotAddBeforeCurrentDate" />
+      <option name="METHOD_NAME" value="shouldNotAddReservationWithSameStartAndEndDate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -182,11 +181,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotAddReservationWithSameStartAndEndDate" />
+        <item itemvalue="JUnit.ReservationsServiceTest" />
         <item itemvalue="JUnit.ReservationsServiceTest.shouldNotDeleteNonExistingReservation" />
         <item itemvalue="JUnit.ReservationsServiceTest.shouldDeleteExistingLogEntry" />
         <item itemvalue="JUnit.ReservationsServiceTest.shouldNotMakeDuplicateReservation" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldMakeReservations" />
-        <item itemvalue="JUnit.ReservationsServiceTest.shouldNotAddBeforeCurrentDate" />
       </list>
     </recent_temporary>
   </component>
