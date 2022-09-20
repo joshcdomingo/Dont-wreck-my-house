@@ -10,6 +10,7 @@ import learn.mastery.models.Host;
 import learn.mastery.models.Reservations;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Controller {
 
@@ -108,11 +109,12 @@ public class Controller {
         if(guest == null || host == null){
             return;
         }
+
         List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayOneReservation(reservations);
         Reservations reservations1 = reservationsService.findById(view.updateById(reservations),host);
 
-        if(view.updateById(reservations) == -1){
+        if(reservations1 == null){
             view.displayStatus(false, "No Reservation Found");
         }
         else {
@@ -148,7 +150,7 @@ public class Controller {
         view.displayOneReservation(reservations);
         Reservations reservations1 = reservationsService.findById(view.updateById(reservations),host);
 
-        if(view.updateById(reservations) == -1){
+        if(reservations1 == null){
             view.displayStatus(false, "No Reservation Found");
         }
         else {

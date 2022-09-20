@@ -119,8 +119,6 @@ public class View {
         if (reservations == null || reservations.isEmpty()) {
             return;
         }
-
-
         System.out.println();
         System.out.printf("%s: %s, %s%n",hostInfo.getLastName(),hostInfo.getCity(),hostInfo.getState());
         System.out.println("=".repeat(30));
@@ -143,10 +141,15 @@ public class View {
         if (reservations == null || reservations.isEmpty()) {
             return -1;
         }
-        displayHeader("Which reservation ID would you like to modify?: ");
-        // grab that entry id
-        int id = io.readInt("Enter the ID: ",1, 9999999);
-        return id;
+        for(Reservations reservations1 : reservations){
+            if(reservations1.getGuest().getEmailAddr().equals(guestInfo.getEmailAddr())){
+                displayHeader("Which reservation ID would you like to modify?: ");
+                // grab that entry id
+                int id = io.readInt("Enter the ID: ",1, 9999999);
+                return id;
+            }
+        }
+        return -1;
     }
 
 

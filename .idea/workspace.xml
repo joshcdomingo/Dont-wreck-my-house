@@ -6,44 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="486010f1-4683-4de8-9600-2eb2415f28aa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/data/ReservationsFileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/HostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/HostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/ReservationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/domain/ReservationsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/models/Reservations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/models/Reservations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/reservations/f4d6c5e4-d207-4ce0-93b3-f1d1b397883c.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/reservations/f4d6c5e4-d207-4ce0-93b3-f1d1b397883c.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/learn/mastery/ui/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dependency-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/DataException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/GuestFileRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/GuestRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/HostFileRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/HostRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/ReservationsFileRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/data/ReservationsRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/domain/GuestService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/domain/HostService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/domain/ReservationsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/domain/Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/domain/Result.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/models/Guest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/models/Host.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/models/Reservations.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/ConsoleIO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/Controller$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/MainMenuOption.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/GuestFileRepositoryDouble.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/GuestFileRepositoryTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/HostFileRepositoryDouble.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/HostFileRepositoryTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/ReservationsFileRepositoryTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/data/ReservationsRepositoryDouble.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/GuestServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/HostServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/learn/mastery/domain/ReservationsServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/learn/mastery/ui/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/learn/mastery/ui/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/learn/mastery/ui/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/learn/mastery/ui/View.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
