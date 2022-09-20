@@ -72,6 +72,14 @@ public class ReservationsService {
             }
         }
 
+        //Overlapping
+        for(Reservations reservations1 : reservations) {
+            if(reservations1.getStartDate().isBefore(reserve.getEndDate()) && reserve.getStartDate().isBefore(reservations1.getEndDate())){
+                result.addErrorMessage("Overlapping reservation dates");
+                return result;
+            }
+        }
+
         validateFields(reserve, result);
         if (!result.isSuccess()) {
             return result;
@@ -100,6 +108,9 @@ public class ReservationsService {
 
         if (reservations.getGuest() == null) {
             result.addErrorMessage("Guest required");
+        }
+        if(reservations.getTotal()==null){
+            result.addErrorMessage("Total can't be empty");
         }
         return result;
     }

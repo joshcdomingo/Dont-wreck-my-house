@@ -40,6 +40,7 @@ public class ReservationsFileRepository implements ReservationsRepository {
         return reservations;
     }
 
+
     //UPDATE
     @Override
     public boolean update(Reservations reservations, Host host) throws DataException {
@@ -91,6 +92,9 @@ public class ReservationsFileRepository implements ReservationsRepository {
     @Override
     public List<Reservations> findByReservations(Host host) {
         ArrayList<Reservations> result = new ArrayList<>();
+        if(host == null){
+            return result;
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader(getFilePath(host.getHostId())))) {
 
             reader.readLine(); // read header

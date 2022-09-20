@@ -62,9 +62,8 @@ public class View {
     }
 
     //VIEW
-    public void displayReservationsByHost(List<Reservations> reservations) {
+    public void displayReservationsByHost(List<Reservations> reservations,List<Host> host) {
         if (reservations == null || reservations.isEmpty()) {
-            io.println("No reservations found.");
             return;
         }
 
@@ -86,11 +85,18 @@ public class View {
 
     //CREATE
     public Reservations makeReservation(Guest guest, Host hosts) {
+        if(guest == null){
+            return null;
+        }
+        if(hosts == null){
+            return null;
+        }
         Reservations reserve = new Reservations();
         reserve.setGuest(guest);
         reserve.setHost(hosts);
         reserve.setStartDate(io.readLocalDate("Enter a check-in date [MM/dd/yyyy]: "));
         reserve.setEndDate(io.readLocalDate("Enter a check-out date [MM/dd/yyyy]: "));
+        reserve.setTotal(reserve.getValue());
         System.out.printf("Total Amount for Weekdays: $%.2f%n",reserve.getStandardRate());
         System.out.printf("Total Amount for Weekends: $%.2f%n",reserve.getWeekendRate());
         System.out.printf("Total Amount of Days of stay: %s%n",reserve.getTotalDays());
@@ -111,7 +117,6 @@ public class View {
     //VIEWING ONE RESERVATION AT A TIME
     public void displayOneReservation(List<Reservations> reservations) {
         if (reservations == null || reservations.isEmpty()) {
-            io.println("No reservations found.");
             return;
         }
 
@@ -134,7 +139,10 @@ public class View {
 
     }
 
-    public int updateById(){
+    public int updateById(List<Reservations> reservations){
+        if (reservations == null || reservations.isEmpty()) {
+            return -1;
+        }
         displayHeader("Which reservation ID would you like to modify?: ");
         // grab that entry id
         int id = io.readInt("Enter the ID: ",1, 9999999);
@@ -144,7 +152,7 @@ public class View {
 
     public Host getHostInfo(List<Host> hosts) {
         if (hosts == null || hosts.isEmpty()) {
-            io.println("No hosts found.");
+            displayStatus(false,"No Host found.");
             return null;
         }
 
@@ -157,7 +165,7 @@ public class View {
 
     public Guest getGuestInfo(List<Guest> guests) {
         if (guests == null || guests.isEmpty()) {
-            io.println("No guests found.");
+            displayStatus(false,"No Guest found.");
             return null;
         }
 

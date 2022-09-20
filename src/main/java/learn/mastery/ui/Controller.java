@@ -62,13 +62,8 @@ public class Controller {
         view.displayHeader(MainMenuOption.VIEW_RESERVATIONS.getMessage());
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
         Host host = view.getHostInfo(hosts);
-        try {
-            List<Reservations> reservations = reservationsService.findByReservations(host);
-            view.displayReservationsByHost(reservations);
-        }
-        catch (NullPointerException exception){
-            System.out.println("No Reservation found");
-        }
+        List<Reservations> reservations = reservationsService.findByReservations(host);
+        view.displayReservationsByHost(reservations,hosts);
         view.enterToContinue();
     }
 
@@ -86,7 +81,7 @@ public class Controller {
             return;
         }
         List<Reservations> reservations = reservationsService.findByReservations(host);
-        view.displayReservationsByHost(reservations);
+        view.displayReservationsByHost(reservations,hosts);
         Reservations reservations1 = view.makeReservation(guest,host);
         if(reservations1 != null) {
             Result<Reservations> result = reservationsService.add(reservations1, host);
@@ -109,31 +104,31 @@ public class Controller {
         List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
         Guest guest = view.getGuestInfo(guests);
-
-        if(guest == null){
-            return;
-        }
         Host host = view.getHostInfo(hosts);
-        if(host == null){
+        if(guest == null || host == null){
             return;
         }
         List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayOneReservation(reservations);
-        Reservations reservations1 = reservationsService.findById(view.updateById(),host);
-        if(reservations != null) {
-            Reservations updatedReserve = view.makeReservation(guest,host);
-            updatedReserve.setReserveId(reservations1.getReserveId());
-            Result<Reservations> result = reservationsService.update(updatedReserve,host);
-            if(!result.isSuccess()){
-                view.displayStatus(false, result.getErrorMessages());
-            }
-            else if(result.isSuccess()){
-                String successMessage = String.format("Reservation was updated!");
-                view.displayStatus(true, successMessage);
-            }
+        Reservations reservations1 = reservationsService.findById(view.updateById(reservations),host);
+
+        if(view.updateById(reservations) == -1){
+            view.displayStatus(false, "No Reservation Found");
         }
-        else{
-            view.displayStatus(false, "Reservation not updated");
+        else {
+            if (reservations != null) {
+                Reservations updatedReserve = view.makeReservation(guest, host);
+                updatedReserve.setReserveId(reservations1.getReserveId());
+                Result<Reservations> result = reservationsService.update(updatedReserve, host);
+                if (!result.isSuccess()) {
+                    view.displayStatus(false, result.getErrorMessages());
+                } else if (result.isSuccess()) {
+                    String successMessage = String.format("Reservation was updated!");
+                    view.displayStatus(true, successMessage);
+                }
+            } else {
+                view.displayStatus(false, "Reservation not updated");
+            }
         }
     }
 
@@ -142,27 +137,29 @@ public class Controller {
         view.displayHeader(MainMenuOption.CANCEL_RESERVATIONS.getMessage());
         List<Guest> guests = guestService.findByEmail(view.getGuestEmail());
         List<Host> hosts = hostService.findByEmail(view.getHostEmail());
-        Guest guest = view.getGuestInfo(guests);
 
-        if(guest == null){
-            return;
-        }
+        Guest guest = view.getGuestInfo(guests);
         Host host = view.getHostInfo(hosts);
-        if(host == null){
+
+        if(guest == null || host == null){
             return;
         }
         List<Reservations> reservations = reservationsService.findByReservations(host);
         view.displayOneReservation(reservations);
-        Reservations reservations1 = reservationsService.findById(view.updateById(),host);
+        Reservations reservations1 = reservationsService.findById(view.updateById(reservations),host);
 
-        if(reservations != null) {
-            Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(),host);
-            if(!result.isSuccess()){
-                view.displayStatus(false, result.getErrorMessages());
-            }
-            else if(result.isSuccess()){
-                String successMessage = "Reservation was deleted";
-                view.displayStatus(true, successMessage);
+        if(view.updateById(reservations) == -1){
+            view.displayStatus(false, "No Reservation Found");
+        }
+        else {
+            if (reservations != null) {
+                Result<Reservations> result = reservationsService.deleteById(reservations1.getReserveId(), host);
+                if (!result.isSuccess()) {
+                    view.displayStatus(false, result.getErrorMessages());
+                } else if (result.isSuccess()) {
+                    String successMessage = "Reservation was deleted";
+                    view.displayStatus(true, successMessage);
+                }
             }
         }
     }

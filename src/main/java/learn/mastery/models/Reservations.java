@@ -68,9 +68,8 @@ public class Reservations {
     }
 
     public BigDecimal getWeekendRate() {
-        long daysDiff = ChronoUnit.DAYS.between(getStartDate(), getEndDate());
         long weekDays = grabWeekdays(getStartDate(), getEndDate());
-        long weekEnds = daysDiff - weekDays;
+        long weekEnds = getTotalDays() - weekDays;
         return host.getWeekRate().multiply(BigDecimal.valueOf(weekEnds));
 
     }
@@ -95,7 +94,7 @@ public class Reservations {
         long daysWithoutWeekends = days - 2 * ((days + startW.getValue())/7);
 
         //return the days without weekends combined with the start and end day of the week
-        return daysWithoutWeekends + (startW == DayOfWeek.MONDAY ? 1 : 0) + (endW == DayOfWeek.SUNDAY ? 1 : 0);
+        return daysWithoutWeekends + (startW == DayOfWeek.SUNDAY ? 1 : 0) + (endW == DayOfWeek.SUNDAY ? 1 : 0);
     }
 
 }
